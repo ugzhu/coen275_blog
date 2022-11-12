@@ -68,6 +68,29 @@ public class UserModel implements Model {
         return resList;
     }
 
+    public List<HashMap<String, Object>> getWithUsername(String username) {
+        HashMap<String, Object> resMap = new HashMap<>();
+        List<HashMap<String, Object>> resList = new ArrayList<>();
+
+        String sql = "SELECT * FROM User WHERE username='" + username + "';";
+        System.out.println(sql);
+
+        try{
+            ResultSet res = db.executeQuery(sql);
+            if (res.getString("username") == null){
+                return null;
+            }
+            resMap.put("UID", res.getInt("UID"));
+            resMap.put("password", res.getString("password"));
+            resMap.put("username", res.getString("username"));
+            resList.add(deepCopy(resMap));
+            resMap.clear();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return resList;
+    }
+
     // non-applicable class from interface, do not call
     public List<HashMap<String, Object>> getWithBid(int BID) {
         return null;

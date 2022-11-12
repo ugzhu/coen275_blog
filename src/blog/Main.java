@@ -18,6 +18,11 @@ public class Main {
         /////////////////////////////////
         Model user = UserModel.instance();
 
+        // get with user name
+        System.out.println(user.getWithUsername("stella2021"));
+        // input: String username
+        // output:
+
         // get all
         user.getAll();
         // input: none
