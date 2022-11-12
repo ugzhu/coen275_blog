@@ -19,11 +19,11 @@ public class User extends UserAbstract {
 	 
 	public void register(String username, String password) {
 		// add [username, password] to db
-		HashMap<String, Object> userInfo;
-		userInfo.put("username", username);
-		userInfo.put("password", password);
+		HashMap<String, Object> newUser = new HashMap<>();
+		newUser.put("username", username);
+		newUser.put("password", password);
 		Model user = UserModel.instance();
-		user.insert(userInfo);
+		user.insert(newUser);
 	}
 	
 	public HashMap<String, Object> login(String username, String password) {
@@ -32,7 +32,7 @@ public class User extends UserAbstract {
 		Model user = UserModel.instance();
 		
 		// ****** 
-		// HashMap<String, Object> userInfo = user.getWithUsername(username);
+		HashMap<String, Object> userInfo = user.getWithUsername(username);
 		userID = userInfo.get("UID");
 		// *******
 

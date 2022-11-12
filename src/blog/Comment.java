@@ -8,15 +8,24 @@ import java.awt.event.ActionListener;
 
 import java.util.HashMap;
 
+import model.Model;
+import model.CommentModel;
+
 public class Comment extends CommentAbstract{
-	public Comment(int commentID) {
-		String content;
-		int userID;
+	int commentID;
+	String content;
+	int userID;
+	public Comment(){
+		
 	}
+	public Comment(int cID) {
+		 commentID = cID;
+	
 
 	JButton editComment = new JButton("edit comment"); 
 	JButton deleteComment = new JButton("delete comment");
 	Model comment = CommentModel.instance();
+	
 	
 	editComment.addActionListener(new ActionListener(){
 		@Override
@@ -32,4 +41,5 @@ public class Comment extends CommentAbstract{
 			comment.delete(commentID);
 		}  
 	});
-} 
+}
+}

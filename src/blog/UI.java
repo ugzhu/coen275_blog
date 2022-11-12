@@ -3,6 +3,7 @@ package blog;
 import model.Model;
 import model.BlogModel;
 import model.UserModel;
+import model.CommentModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +62,7 @@ public class UI extends UIAbstract {
 				if ((boolean) check.get("success") == true) {
 					userID = (int) check.get("UID");
 					// *******
-					userBlogs = check.get("blogList");
+					userBlogs = (List) check.get("blogList");
 					// redirect to userpage
 		
 				} else {
@@ -80,10 +81,10 @@ public class UI extends UIAbstract {
 		// render userBlogs
 		JButton addBlog = new JButton("add blog"); 
 		// UI get 
-		String title;
-		String content;
+		String title = "";
+		String content = "";
 		Model blog = BlogModel.instance();
-		HashMap<String, Object> newBlog;
+		HashMap<String, Object> newBlog = new HashMap();
 		newBlog.put("title", title);
 		newBlog.put("content", content);
 		newBlog.put("UID", userID);
