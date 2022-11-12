@@ -62,6 +62,7 @@ public class Main {
 
 
         // get with bid
+        // ******
         blog.getWithBid(1);
         // input: int BID
         // output: List<HashMap<String, Object>>

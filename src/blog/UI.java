@@ -62,6 +62,7 @@ public class UI extends UIAbstract {
 					userID = (int) check.get("UID");
 					// *******
 					userBlogs = check.get("blogList");
+					// redirect to userpage
 		
 				} else {
 					System.out.print("Login failed.");
@@ -76,37 +77,66 @@ public class UI extends UIAbstract {
 		allBlogs = blog.getAll();
 	};
 	public void userPage() {
-		userBlogs = 
+		// render userBlogs
+		JButton addBlog = new JButton("add blog"); 
+		// UI get 
+		String title;
+		String content;
+		Model blog = BlogModel.instance();
+		HashMap<String, Object> newBlog;
+		newBlog.put("title", title);
+		newBlog.put("content", content);
+		newBlog.put("UID", userID);
+		blog.insert(newBlog);
+
 	};
 	public void blogPage() {
+
+		// pass BID from button
+		int blogID;
+		Model blog = BlogModel.instance();
+		Model comment = CommentModel.instance();
+		
+		HashMap<String, Object> currBlog = blog.getWithBid(blogID);
+		String title = (String) currBlog.get("title");
+		String content = (String) currBlog.get("content");
+		allComments = comment.getWithBid(blogID);
+		// create comment instance
+		int CID;
+		Comment c1 = new Comment(CID);
+
 		JButton editBlog = new JButton("edit blog"); 
 		JButton deleteBlog = new JButton("delete blog"); 
-		JButton editComment = new JButton("edit comment"); 
-		JButton deleteComment = new JButton("delete comment");
+		JButton addComment = new JButton("add comment");
+		
+		addComment.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String commentContent;
+				HashMap<String, Object> newComment;
+				newComment.put("content", commentContent);
+				newComment.put("BID", blogID);
+				newComment.put("UID", userID);
+				comment.insert(newComment);
+			}  
+		});
 		editBlog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				HashMap<String, Object> editBlog;
+				editBlog.put("title", title);
+				editBlog.put("content", content);
+				editBlog.put("BID", blogID);
+				blog.update(editBlog);
 			}  
 		});
 		deleteBlog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				blog.delete(blogID);
 			}  
 		});
-		editComment.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}  
-		});
-		deleteComment.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}  
-		});
+		
 	};
 }
 
