@@ -14,7 +14,7 @@ public class UserModel implements Model {
     static public UserModel instance() { return instance_; }
     private UserModel(){
         db = DbConnector.instance();
-    }
+    } 
 
     public List<HashMap<String, Object>> getAll(){
         String sql = "SELECT * FROM User;";

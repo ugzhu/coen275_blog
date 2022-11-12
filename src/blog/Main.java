@@ -12,7 +12,9 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-
+        
+        UI page = new UI();
+        page.homePage();
         //////////////////////////////////
         /////////    User ///////////////
         /////////////////////////////////
