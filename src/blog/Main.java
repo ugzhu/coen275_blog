@@ -18,13 +18,22 @@ public class Main {
         // //////////////////////////////////
         // /////////    User ///////////////
         // /////////////////////////////////
-        // Model user = UserModel.instance();
+        Model user = UserModel.instance();
 
         // // get all
         // user.getAll();
         // // input: none
         // // output: List<HashMap<String, Object>>
 
+        // get with user name
+        System.out.println(user.getWithUsername("stella2021"));
+        // input: String username
+        // output:
+
+        // get all
+        user.getAll();
+        // input: none
+        // output: List<HashMap<String, Object>>
 
         // // get user
         // user.getWithUid(1);
