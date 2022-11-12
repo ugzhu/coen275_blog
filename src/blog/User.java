@@ -39,7 +39,7 @@ public class User extends UserAbstract {
 		HashMap<String, Object> result;
 
 		// *******
-		if (userInfo && userInfo.get("password") != password) {
+		if (userInfo == null && userInfo.get("password") != password) {
 			result.put("success", false);
 			return result;
 		} 

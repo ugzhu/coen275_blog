@@ -94,16 +94,16 @@ public class UI extends UIAbstract {
 	public void blogPage() {
 
 		// pass BID from button
-		int blogID;
+		int blogID = 0;
 		Model blog = BlogModel.instance();
 		Model comment = CommentModel.instance();
 		
-		HashMap<String, Object> currBlog = blog.getWithBid(blogID);
+		HashMap<String, Object> currBlog = blog.getWithBid(blogID).get(0);
 		String title = (String) currBlog.get("title");
 		String content = (String) currBlog.get("content");
 		allComments = comment.getWithBid(blogID);
 		// create comment instance
-		int CID;
+		int CID = 0;
 		Comment c1 = new Comment(CID);
 
 		JButton editBlog = new JButton("edit blog"); 
@@ -113,8 +113,8 @@ public class UI extends UIAbstract {
 		addComment.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String commentContent;
-				HashMap<String, Object> newComment;
+				String commentContent = "";
+				HashMap<String, Object> newComment = new HashMap<>();
 				newComment.put("content", commentContent);
 				newComment.put("BID", blogID);
 				newComment.put("UID", userID);
@@ -124,7 +124,7 @@ public class UI extends UIAbstract {
 		editBlog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				HashMap<String, Object> editBlog;
+				HashMap<String, Object> editBlog = new HashMap<>();
 				editBlog.put("title", title);
 				editBlog.put("content", content);
 				editBlog.put("BID", blogID);

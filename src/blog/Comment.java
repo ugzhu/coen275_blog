@@ -30,7 +30,7 @@ public class Comment extends CommentAbstract{
 	editComment.addActionListener(new ActionListener(){
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			HashMap<String, Object> editComment;
+			HashMap<String, Object> editComment = new HashMap<>();
 			editComment.put("content", content);
 			comment.update(editComment);
 		}  
