@@ -1,13 +1,12 @@
 package gui;
 
-import blog.Blog;
-import blog.User;
+import backend.Blog;
+import backend.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Home {
     public static JFrame homeFrame;
@@ -37,9 +36,6 @@ public class Home {
         homeButton = new JButton(HOMEPANEL);
         userButton = new JButton(USERPANEL);
         blogButton = new JButton(BLOGPANEL);
-
-
-
 
         JPanel menuPane = new JPanel(new FlowLayout());
         menuPane.add(homeButton);

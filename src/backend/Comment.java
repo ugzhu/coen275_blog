@@ -1,8 +1,6 @@
-package blog;
+package backend;
 
-import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

@@ -1,6 +1,8 @@
 package gui;
 
-import blog.User;
+import backend.User;
+import model.Model;
+import model.UserModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,24 +31,24 @@ public class LoginForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        Model user = UserModel.instance();
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User user = new User();
-                HashMap<String, Object> check = user.login(usernameInput.getText(), passwordInput.getText());
-                if ((boolean) check.get("success") == true) {
-                    userID = (int) check.get("UID");
-                    // *******
-                    userBlogs = (List) check.get("blogList");
-                    // redirect to userpage
 
-                } else {
+                HashMap<String, Object> check = user.getWithUsername(usernameInput.getText()).get(0);
+                if (check == null || !check.get("password").equals(passwordInput.getPassword())) {
                     JOptionPane.showMessageDialog(loginPanel,
                             "Login Failed",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
+                } else {
+                    userID = (int) check.get("UID");
+                    User user = User.getInstance(userID);
+                    userBlogs = user.getBlogList(userID);
                 }
+
             }
         });
 

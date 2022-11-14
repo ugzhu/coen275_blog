@@ -1,7 +1,7 @@
 package gui;
 
-import blog.Blog;
-import blog.User;
+import backend.Blog;
+import backend.User;
 
 import javax.swing.*;
 import java.awt.*;

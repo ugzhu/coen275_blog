@@ -1,9 +1,8 @@
 package gui;
 
-import blog.Blog;
-import blog.BlogAbstract;
-import blog.Comment;
-import blog.User;
+import backend.Blog;
+import backend.Comment;
+import backend.User;
 import model.BlogModel;
 import model.CommentModel;
 import model.Model;
@@ -11,7 +10,6 @@ import model.Model;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

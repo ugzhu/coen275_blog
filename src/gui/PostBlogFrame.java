@@ -1,6 +1,6 @@
 package gui;
 
-import blog.User;
+import backend.User;
 import model.BlogModel;
 import model.Model;
 
