@@ -1,9 +1,13 @@
 package gui;
 
+import blog.Blog;
+import blog.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Home {
     public static JFrame homeFrame;
@@ -15,8 +19,11 @@ public class Home {
     private JButton homeButton;
     private JButton userButton;
     private JButton blogButton;
+    private JTextField searchBar;
 
     boolean isLogin = false;
+
+
 
 
     public void addCards(Container pane){
@@ -24,18 +31,51 @@ public class Home {
         userButton = new JButton(USERPANEL);
         blogButton = new JButton(BLOGPANEL);
 
+
         JPanel menuPane = new JPanel(new FlowLayout());
         menuPane.add(homeButton);
         menuPane.add(userButton);
         menuPane.add(blogButton);
 
         // HOME PAGE
-        JPanel home = new JPanel();
-        home.add(new JLabel("i am home"));
+        JPanel home = new JPanel(new BorderLayout());
+        home.setBackground(Color.WHITE);
+        home.add(new JLabel("i am home"),BorderLayout.CENTER);
+
+        searchBar = new JTextField("   Search for blog", 20);
+        searchBar.setBounds(200, 12, 350, 30);
+        searchBar.setBackground(new Color(238,238,238));
+        searchBar.setForeground(Color.GRAY);
+        searchBar.addActionListener(new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Text field is pressed: " + searchBar.getText().toLowerCase());
+                String text = searchBar.getText().toLowerCase();
+                // Search for blog
+                // if found, prompt blog frame
+                // Test blog and user
+                User user = new User();
+                Blog blog = new Blog();
+                if (false) {
+                    BlogFrame frame = new BlogFrame(blog,user);
+                    frame.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(home,
+                            "Blog not found",
+                            "Try again",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+                searchBar.setText("");
+            }
+        });
+
+        home.add(searchBar,BorderLayout.NORTH);
 
         // USER PAGE
         JPanel user = new JPanel();
         user.add(new JLabel("i am user"));
+        // add blog
+        // update blog
+        // delete blog
 
         // BLOG PAGE
         JPanel blog = new JPanel();
@@ -96,26 +136,15 @@ public class Home {
 
     public static void main(String[] args) {
 
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                try {
+                    // open home frame
+                    Home home = new Home();
+                    home.createAndShowGUI();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

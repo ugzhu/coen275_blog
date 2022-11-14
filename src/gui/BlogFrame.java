@@ -25,9 +25,9 @@ public class BlogFrame extends JFrame {
     JButton commentButton = new JButton();
 
     // user
-    User user = new User();
+    static User user = new User();
     // blog
-    Blog blog = new Blog();
+    static Blog blog = new Blog();
     // comments
     List<HashMap<String, Object>> allComments;
 
@@ -39,7 +39,7 @@ public class BlogFrame extends JFrame {
         return date;
     }
 
-    public BlogFrame(){
+    public BlogFrame(Blog b, User u){
 
         // test variables to be changed
         String username = "test username";
@@ -150,7 +150,7 @@ public class BlogFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        BlogFrame frame = new BlogFrame();
+        BlogFrame frame = new BlogFrame(blog,user);
         frame.setVisible(true);
     }
 }

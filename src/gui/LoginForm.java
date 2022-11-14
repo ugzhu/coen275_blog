@@ -14,7 +14,7 @@ public class LoginForm extends JDialog {
     private JTextField usernameInput;
     private JButton loginButton;
     private JButton regsButton;
-    private JButton cancelButton;
+    private JButton exitButton;
     private JPasswordField passwordInput;
 
     //// to be changed
@@ -57,10 +57,12 @@ public class LoginForm extends JDialog {
             }
         });
 
-        cancelButton.addActionListener(new ActionListener() {
+        exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                // Have to log in as user to continue to blog
+                parent.dispose();
             }
         });
 
