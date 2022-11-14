@@ -21,6 +21,13 @@ public class Home {
     private JButton blogButton;
     private JTextField searchBar;
 
+    private JPanel homeNorth;
+    private JPanel homeWest;
+    private JPanel homeEast;
+    private JPanel homeCenter;
+
+    private JButton postBlog;
+
     boolean isLogin = false;
 
 
@@ -32,6 +39,8 @@ public class Home {
         blogButton = new JButton(BLOGPANEL);
 
 
+
+
         JPanel menuPane = new JPanel(new FlowLayout());
         menuPane.add(homeButton);
         menuPane.add(userButton);
@@ -40,7 +49,7 @@ public class Home {
         // HOME PAGE
         JPanel home = new JPanel(new BorderLayout());
         home.setBackground(Color.WHITE);
-        home.add(new JLabel("i am home"),BorderLayout.CENTER);
+        //home.add(new JLabel("i am home"),BorderLayout.CENTER);
 
         searchBar = new JTextField("   Search for blog", 20);
         searchBar.setBounds(200, 12, 350, 30);
@@ -68,7 +77,11 @@ public class Home {
             }
         });
 
-        home.add(searchBar,BorderLayout.NORTH);
+        homeNorth.add(searchBar);
+        //homeWest.add();
+
+        // Blogs display on home center
+
 
         // USER PAGE
         JPanel user = new JPanel();

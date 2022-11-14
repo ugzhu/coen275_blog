@@ -91,6 +91,8 @@ public class BlogFrame extends JFrame {
         buttonPanel.setBackground(Color.white);
 
         JButton commentButton = new JButton("Comment");
+        //JButton editButton = new JButton("Edit");
+        //JButton deleteButton = new JButton("Delete");
 
         commentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -133,6 +135,8 @@ public class BlogFrame extends JFrame {
         });
 
         buttonPanel.add(commentButton);
+        //buttonPanel.add(editButton);
+        //buttonPanel.add(deleteButton);
 
         contentPane.add(subPanel);
         contentPane.add(bodyPanel);
@@ -141,11 +145,11 @@ public class BlogFrame extends JFrame {
         // show comment here?
         /////////
 
-        JScrollPane scrollPane = new JScrollPane(contentPane);
+        JScrollPane commentScrollPane = new JScrollPane(contentPane);
 
 
 
-        add(scrollPane);
+        add(commentScrollPane);
         pack();
     }
 
