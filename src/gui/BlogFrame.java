@@ -157,12 +157,8 @@ public class BlogFrame extends JFrame {
             editButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    // need to open new EditBlogFrame
-                    HashMap<String, Object> editBlog = new HashMap<>();
-                    editBlog.put("title", blogtitle);
-                    editBlog.put("content", blogcontent);
-                    editBlog.put("BID", blogID);
-                    blog.update(editBlog);
+                    //
+                    EditBlogFrame editBlogFrame = new EditBlogFrame(b,u);
                 }
             });
             deleteButton.addActionListener(new ActionListener(){

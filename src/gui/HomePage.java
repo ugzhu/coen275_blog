@@ -260,7 +260,7 @@ public class HomePage extends JFrame {
                 buttonPanel.add(editButton);
                 editButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent ae) {
-                        // Open EditBlogFrame?
+                        EditBlogFrame editBlogFrame = new EditBlogFrame(blog,user);
                     }
                 });
             }
