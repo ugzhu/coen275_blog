@@ -13,8 +13,7 @@ public class Combined {
             public void run() {
                 try {
                     // open home frame
-                    Home home = new Home();
-                    home.createAndShowGUI();
+                    HomePage homePage = new HomePage();
 
                     // and prompt login dialog
                     LoginForm loginForm = new LoginForm(homeFrame);
