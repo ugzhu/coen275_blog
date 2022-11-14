@@ -62,7 +62,7 @@ public class UI extends UIAbstract {
 				if ((boolean) check.get("success") == true) {
 					userID = (int) check.get("UID");
 					// *******
-					userBlogs = (List) check.get("blogList");
+					userBlogs = (List<HashMap<String, Object>>) check.get("blogList");
 					// redirect to userpage
 		
 				} else {
@@ -76,6 +76,7 @@ public class UI extends UIAbstract {
 		// get allBlogs from db	
 		Model blog = BlogModel.instance();
 		allBlogs = blog.getAll();
+		System.out.println(allBlogs);
 	};
 	public void userPage() {
 		// render userBlogs

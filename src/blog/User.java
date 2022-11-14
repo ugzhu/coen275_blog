@@ -32,14 +32,14 @@ public class User extends UserAbstract {
 		Model user = UserModel.instance();
 		
 		// ****** 
-		HashMap<String, Object> userInfo = user.getWithUsername(username);
-		userID = userInfo.get("UID");
+		HashMap<String, Object> userInfo = user.getWithUsername(username).get(0);
+		userID = (int) userInfo.get("UID");
+		System.out.println(userInfo);
 		// *******
 
-		HashMap<String, Object> result;
+		HashMap<String, Object> result = new HashMap<>();
 
-		// *******
-		if (userInfo == null && userInfo.get("password") != password) {
+		if (userInfo == null || !userInfo.get("password").equals(password)) {
 			result.put("success", false);
 			return result;
 		} 
