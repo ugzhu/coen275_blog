@@ -110,7 +110,7 @@ public class HomePage extends JFrame {
         gbc.insets = new Insets(8,8,8,8);
 
         homeBlogScroll.setLayout(new BoxLayout(homeBlogScroll, BoxLayout.PAGE_AXIS));
-        homeBlogScroll.setBackground(contentPane.getBackground());
+        homeBlogScroll.setBackground(homePane.getBackground());
 
         ArrayList<Blog> blogList = new ArrayList<>();
 
@@ -250,7 +250,7 @@ public class HomePage extends JFrame {
             buttonPanel.setBackground(panel.getBackground());
 
             ArrayList<Integer> blogcommentlist = blog.commentList;
-            // show comments?
+            // show comments? or no?
 
             JButton commentButton = new JButton("Comment");
             buttonPanel.add(commentButton);
