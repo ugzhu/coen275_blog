@@ -114,4 +114,9 @@ public class BlogModel implements Model{
         db.executeUpdate(sql);
     }
 
+    public List<HashMap<String, Object>> getWithUsername(String username) {
+        return null;
+    }
+
 }
+

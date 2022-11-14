@@ -1,30 +1,69 @@
 package blog;
 
+import blog.*;
 import model.Model;
 import model.BlogModel;
 import model.CommentModel;
 import model.UserModel;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.sql.*;
 import java.util.HashMap;
 
 
 public class Main {
+    public static void main(String[] args) {
+        Index application = new Index();
+        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    MainWindow frame = new MainWindow();
+//                    frame.setVisible(true);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
-    public static void main(String[] args) throws SQLException {
-        
-        UI page = new UI();
-        page.homePage();
+
+    }
+    //    public MainWindow() {
+//        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setBounds(100, 100, 480, 380);
+//        contentPane = new JPanel();
+//        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+//        setContentPanel(contentPane);
+//        contentPane.setLayout(null);
+//
+//        layeredPane = new JLayeredPane();
+//
+//    }
+    public static void test() throws SQLException {
+
+
         // //////////////////////////////////
         // /////////    User ///////////////
         // /////////////////////////////////
-        // Model user = UserModel.instance();
+        Model user = UserModel.instance();
 
         // // get all
         // user.getAll();
         // // input: none
         // // output: List<HashMap<String, Object>>
 
+        // get with user name
+        System.out.println(user.getWithUsername("stella2021"));
+        // input: String username
+        // output:
+
+        // get all
+        user.getAll();
+        // input: none
+        // output: List<HashMap<String, Object>>
 
         // // get user
         // user.getWithUid(1);

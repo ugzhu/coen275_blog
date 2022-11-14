@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class UI extends UIAbstract {
 	protected boolean isLogin;
-	
+
 	// main frame
 	public UI() {
 		List<HashMap<String, Object>> allBlogs;
@@ -28,33 +28,33 @@ public class UI extends UIAbstract {
 
 		// use for redirect when not login
 		boolean isLogin = false;
-		
+
 	}
-	
+
 	// user = new User
-    // [{BID: 1, title: "mytitle1"}, {BID: 2, title: "othertitle"}]
+	// [{BID: 1, title: "mytitle1"}, {BID: 2, title: "othertitle"}]
 	public void registerPage() {
 		JTextField  usernameInput = new JTextField(10);
 		JTextField  passwordInput = new JTextField(10);
-		JButton regsButton = new JButton("Register"); 
+		JButton regsButton = new JButton("Register");
 		regsButton.addActionListener(new ActionListener(){
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				User user = new User();
 				user.register(usernameInput.getText(), passwordInput.getText());
 				// System.out.print("Registered! Please login.");
 				// redirect to login page
-			}  
+			}
 		});
 
 	};
 	public void loginPage() {
 		JTextField  usernameInput = new JTextField(10);
 		JTextField  passwordInput = new JTextField(10);
-		JButton loginButton = new JButton("Login"); 
+		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener(){
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				User user = new User();
@@ -62,25 +62,26 @@ public class UI extends UIAbstract {
 				if ((boolean) check.get("success") == true) {
 					userID = (int) check.get("UID");
 					// *******
-					userBlogs = (List) check.get("blogList");
+					userBlogs = (List<HashMap<String, Object>>) check.get("blogList");
 					// redirect to userpage
-		
+
 				} else {
 					System.out.print("Login failed.");
 				}
-			}  
+			}
 		});
-			
+
 	};
 	public void homePage() {
-		// get allBlogs from db	
+		// get allBlogs from db
 		Model blog = BlogModel.instance();
 		allBlogs = blog.getAll();
+		System.out.println(allBlogs);
 	};
 	public void userPage() {
 		// render userBlogs
-		JButton addBlog = new JButton("add blog"); 
-		// UI get 
+		JButton addBlog = new JButton("add blog");
+		// UI get
 		String title = "";
 		String content = "";
 		Model blog = BlogModel.instance();
@@ -97,7 +98,7 @@ public class UI extends UIAbstract {
 		int blogID = 0;
 		Model blog = BlogModel.instance();
 		Model comment = CommentModel.instance();
-		
+
 		HashMap<String, Object> currBlog = blog.getWithBid(blogID).get(0);
 		String title = (String) currBlog.get("title");
 		String content = (String) currBlog.get("content");
@@ -106,10 +107,10 @@ public class UI extends UIAbstract {
 		int CID = 0;
 		Comment c1 = new Comment(CID);
 
-		JButton editBlog = new JButton("edit blog"); 
-		JButton deleteBlog = new JButton("delete blog"); 
+		JButton editBlog = new JButton("edit blog");
+		JButton deleteBlog = new JButton("delete blog");
 		JButton addComment = new JButton("add comment");
-		
+
 		addComment.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -119,7 +120,7 @@ public class UI extends UIAbstract {
 				newComment.put("BID", blogID);
 				newComment.put("UID", userID);
 				comment.insert(newComment);
-			}  
+			}
 		});
 		editBlog.addActionListener(new ActionListener(){
 			@Override
@@ -129,15 +130,14 @@ public class UI extends UIAbstract {
 				editBlog.put("content", content);
 				editBlog.put("BID", blogID);
 				blog.update(editBlog);
-			}  
+			}
 		});
 		deleteBlog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				blog.delete(blogID);
-			}  
+			}
 		});
-		
+
 	};
 }
-

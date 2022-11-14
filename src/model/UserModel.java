@@ -14,7 +14,7 @@ public class UserModel implements Model {
     static public UserModel instance() { return instance_; }
     private UserModel(){
         db = DbConnector.instance();
-    } 
+    }
 
     public List<HashMap<String, Object>> getAll(){
         String sql = "SELECT * FROM User;";
@@ -55,6 +55,29 @@ public class UserModel implements Model {
         try{
             ResultSet res = db.executeQuery(sql);
             if (res.getInt("UID") != UID){
+                return null;
+            }
+            resMap.put("UID", res.getInt("UID"));
+            resMap.put("password", res.getString("password"));
+            resMap.put("username", res.getString("username"));
+            resList.add(deepCopy(resMap));
+            resMap.clear();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return resList;
+    }
+
+    public List<HashMap<String, Object>> getWithUsername(String username) {
+        HashMap<String, Object> resMap = new HashMap<>();
+        List<HashMap<String, Object>> resList = new ArrayList<>();
+
+        String sql = "SELECT * FROM User WHERE username='" + username + "';";
+        System.out.println(sql);
+
+        try{
+            ResultSet res = db.executeQuery(sql);
+            if (res.getString("username") == null){
                 return null;
             }
             resMap.put("UID", res.getInt("UID"));

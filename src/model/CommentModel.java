@@ -90,8 +90,13 @@ public class CommentModel implements Model{
         db.executeUpdate(sql);
     }
 
+
+
     // non-applicable class from interface, do not call
     public List<HashMap<String, Object>> getWithUid(int UID) {
+        return null;
+    }
+    public List<HashMap<String, Object>> getWithUsername(String username) {
         return null;
     }
 }
