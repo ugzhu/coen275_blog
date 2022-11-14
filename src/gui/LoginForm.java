@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class LoginForm extends JDialog {
             public void actionPerformed(ActionEvent e) {
 
                 HashMap<String, Object> check = user.getWithUsername(usernameInput.getText()).get(0);
-                if (check == null || !check.get("password").equals(passwordInput.getPassword())) {
+                if (check == null || ! Arrays.equals(check.get("password").toString().toCharArray(), passwordInput.getPassword())) {
                     JOptionPane.showMessageDialog(loginPanel,
                             "Login Failed",
                             "Try again",
@@ -47,6 +48,7 @@ public class LoginForm extends JDialog {
                     userID = (int) check.get("UID");
                     User user = User.getInstance(userID);
                     userBlogs = user.getBlogList(userID);
+                    // close window
                 }
 
             }

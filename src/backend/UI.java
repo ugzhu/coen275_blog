@@ -30,45 +30,8 @@ public class UI extends UIAbstract {
 
 	// user = new User
 	// [{BID: 1, title: "mytitle1"}, {BID: 2, title: "othertitle"}]
-	public void registerPage() {
-		JTextField  usernameInput = new JTextField(10);
-		JTextField  passwordInput = new JTextField(10);
-		JButton regsButton = new JButton("Register");
-		regsButton.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				User user = new User();
-				user.register(usernameInput.getText(), passwordInput.getText());
-				// System.out.print("Registered! Please login.");
-				// redirect to login page
-			}
-		});
 
-	};
-	public void loginPage() {
-		JTextField  usernameInput = new JTextField(10);
-		JTextField  passwordInput = new JTextField(10);
-		JButton loginButton = new JButton("Login");
-		loginButton.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				User user = new User();
-				HashMap<String, Object> check = user.login(usernameInput.getText(), passwordInput.getText());
-				if ((boolean) check.get("success") == true) {
-					userID = (int) check.get("UID");
-					// *******
-					userBlogs = (List<HashMap<String, Object>>) check.get("blogList");
-					// redirect to userpage
-
-				} else {
-					System.out.print("Login failed.");
-				}
-			}
-		});
-
-	};
 	public void homePage() {
 		// get allBlogs from db
 		Model blog = BlogModel.instance();
