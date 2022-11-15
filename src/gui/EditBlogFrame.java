@@ -68,9 +68,5 @@ public class EditBlogFrame extends JFrame {
             }
         });
     }
-//
-//    public static void main(String[] args) {
-//
-//        EditBlogFrame editBlogFrame = new EditBlogFrame(BID,UID);
-//    }
+
 }

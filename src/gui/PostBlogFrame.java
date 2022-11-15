@@ -56,8 +56,4 @@ public class PostBlogFrame extends JFrame {
         });
     }
 
-//    public static void main(String[] args) {
-//        User user = new User();
-//        PostBlogFrame postBlogFrame = new PostBlogFrame(user);
-//    }
 }

@@ -334,19 +334,5 @@ public class HomePage extends JFrame {
         return blogPanel;
     }
 
-//    public static void main(String[] args) {
-//
-//        EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    // open home frame
-////                    HomePage homePage = new HomePage();
-//                    // open login
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
 }

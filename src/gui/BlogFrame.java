@@ -55,7 +55,7 @@ public class BlogFrame extends JFrame {
 
         titleBlog = new JLabel(blogTitle);
         usernameBlog = new JLabel(authorName);
-        datePosted = new JLabel(" at " + blog.getDate());
+//        datePosted = new JLabel(" at " + blog.getDate());
         datePosted.setForeground(Color.gray);
         bodyBlog = new JLabel(blogContent);
 
@@ -297,8 +297,4 @@ public class BlogFrame extends JFrame {
         return commentPanel;
     }
 
-//    public static void main(String[] args) {
-////        BlogFrame frame = new BlogFrame(int BID, int UID);
-////        frame.setVisible(true);
-//    }
 }

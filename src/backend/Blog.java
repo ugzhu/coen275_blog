@@ -17,7 +17,7 @@ public class Blog extends BlogAbstract{
 
 
 	public Blog(int BID) {
-
+		blogID = BID;
 	}
 	public List<HashMap<String, Object>> getCommentList() {
 		commentsList = comment.getWithBid(blogID);
@@ -51,16 +51,9 @@ public class Blog extends BlogAbstract{
 		newComment.put("UID", UID);
 		comment.insert(newComment);
 	}
-	public String getDate() {
-		String date = "";
-		date = java.time.LocalDate.now().toString() + " " + java.time.LocalTime.now().getHour() + ":"
-				+ java.time.LocalTime.now().getMinute() + ":" + java.time.LocalTime.now().getSecond();
-		return date;
-	}
 	public static Blog getInstance(int bid) {
 		if (instance == null) {
 			instance = new Blog(bid);
-			instance.blogID = bid;
 		} else if (bid == -1) {
 			instance = null;
 		}
