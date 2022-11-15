@@ -3,9 +3,7 @@ package gui;
 import backend.Blog;
 import backend.Comment;
 import backend.User;
-import model.BlogModel;
-import model.CommentModel;
-import model.Model;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,45 +21,43 @@ public class BlogFrame extends JFrame {
     JLabel bodyBlog;
     JButton commentButton;
 
-    // user
-    static User user = new User();
+
     // blog
-    static Blog blog = new Blog();
+    int blogID;
+    int userID;
+    HashMap<String, Object> blogInfo;
+    Blog blog;
     // comments
     List<HashMap<String, Object>> allComments;
+    Model user = UserModel.instance();
 
-    public String getDate() {
-        String date = "";
-
-        date = java.time.LocalDate.now().toString() + " " + java.time.LocalTime.now().getHour() + ":"
-                + java.time.LocalTime.now().getMinute() + ":" + java.time.LocalTime.now().getSecond();
-        return date;
-    }
-
-    public BlogFrame(Blog b, User u){
+    public BlogFrame(int BID, int UID){
 
         // test variables to be changed
-        Model blog = BlogModel.instance();
-        Model comment = CommentModel.instance();
+        blog = Blog.getInstance(BID);
+        allComments = blog.getCommentList();
+        blogInfo = blog.getBlogInfo(BID);
 
-        String username = "test username";
-        String blogusername = "test blogusername";
-        String blogtitle = "test title";
-        String blogcontent = "test content";
-        int blogID = 1;
-        int userID = 11;
+        blogID = BID;
+        userID = UID;
+        int authorUID = (int) blogInfo.get("UID");
+        String authorName = (String) blogInfo.get("authorName");
+        String blogTitle = (String) blogInfo.get("title");
+        String blogContent = (String) blogInfo.get("content");
 
-        setTitle("Blog of " + blogusername);
+
+
+        setTitle("Blog of " + authorName);
         setBounds(500, 300, 600, 400);
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
         contentPane.setBackground(Color.blue);
         contentPane.setBorder(BorderFactory.createLineBorder(Color.blue));
 
-        titleBlog = new JLabel(blogtitle);
-        usernameBlog = new JLabel(blogusername);
-        datePosted = new JLabel(" at " + getDate());
+        titleBlog = new JLabel(blogTitle);
+        usernameBlog = new JLabel(authorName);
+        datePosted = new JLabel(" at " + blog.getDate());
         datePosted.setForeground(Color.gray);
-        bodyBlog = new JLabel(blogcontent);
+        bodyBlog = new JLabel(blogContent);
 
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -74,10 +70,10 @@ public class BlogFrame extends JFrame {
         bodyPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         bodyPanel.setBackground(Color.white);
 
-        if (blogcontent.length() >= 85) {
+        if (blogContent.length() >= 85) {
             String text = "<html>";
-            for (int i = 0; i < blogcontent.length(); i++) {
-                text += blogcontent.charAt(i);
+            for (int i = 0; i < blogContent.length(); i++) {
+                text += blogContent.charAt(i);
                 if (text.length() % 85 == 0) {
                     text += "<br>";
                 }
@@ -87,7 +83,7 @@ public class BlogFrame extends JFrame {
             bodyPanel.add(bodyBlog);
         }
         else {
-            bodyBlog = new JLabel(blogcontent);
+            bodyBlog = new JLabel(blogContent);
             bodyPanel.add(bodyBlog);
         }
 
@@ -128,11 +124,7 @@ public class BlogFrame extends JFrame {
                 addCommentButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         String commentContent = commentText.getText();
-                        HashMap<String, Object> newComment = new HashMap<>();
-                        newComment.put("content", commentContent);
-                        newComment.put("BID", blogID);
-                        newComment.put("UID", userID);
-                        comment.insert(newComment);
+                        blog.addComment(commentContent, userID);
                     }
                 });
                 buttonPanel.add(addCommentButton);
@@ -148,7 +140,7 @@ public class BlogFrame extends JFrame {
         //buttonPanel.add(deleteButton);
 
         // if user is bloguser, add edit and delete buttons
-        if (username.equals(blogusername)){
+        if (UID == authorUID){
             JButton editButton = new JButton("Edit");
             JButton deleteButton = new JButton("Delete");
 
@@ -156,13 +148,16 @@ public class BlogFrame extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     //
-                    EditBlogFrame editBlogFrame = new EditBlogFrame(b,u);
+                    EditBlogFrame editBlogFrame = new EditBlogFrame(blogID, userID);
                 }
             });
             deleteButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    blog.delete(blogID);
+
+                    blog.deleteBlog(blogID);
+                    blogID = -1;
+                    // redirect to Home
                 }
             });
 
@@ -186,9 +181,9 @@ public class BlogFrame extends JFrame {
         commentScroll.setLayout(new BoxLayout(commentScroll, BoxLayout.PAGE_AXIS));
         commentScroll.setBackground(contentPane.getBackground());
 
-        ArrayList<Comment> commentList = new ArrayList<>();
 
-        ArrayList<JPanel> blogPanel = showComment(commentList);
+
+        ArrayList<JPanel> blogPanel = showComment(allComments);
         for (JPanel panel : blogPanel) {
             commentScroll.add(panel);
             commentScroll.add(Box.createRigidArea(new Dimension(0,10)));
@@ -203,18 +198,20 @@ public class BlogFrame extends JFrame {
         pack();
     }
 
-    public ArrayList<JPanel> showComment(ArrayList<Comment> list) {
+    public ArrayList<JPanel> showComment(List<HashMap<String, Object>> commentList) {
         ArrayList<JPanel> commentPanel = new ArrayList<>();
         // add pane for each comment
-        for(Comment comment : list){
 
-            //test variables
-            String commentbody = "test comment";
-            String commentuser = "test comment user";
-            String commentdate = "test comment data";
-            String username = "test username";
-            int commentID = 111;
-            Model commentModel = CommentModel.instance();
+        for (int i = 0; i < commentList.size(); i++) {
+            String commentContent = (String) commentList.get(i).get("content");
+            int commentID = (int) commentList.get(i).get("CID");
+            String commentDate = "test comment data";
+            int commentAuthorID = (int) commentList.get(i).get("UID");
+            String commentAuthorName = (String) user.getWithUid(commentAuthorID).get(0).get("username");
+            int blogID = (int) commentList.get(i).get("BID");
+
+            Comment comment = new Comment(commentID, commentContent, commentAuthorID, blogID);
+
 
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -225,8 +222,8 @@ public class BlogFrame extends JFrame {
             JPanel subPanel = new JPanel();
             subPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             subPanel.setBackground(Color.white);
-            JLabel usernameLabel = new JLabel("• Posted by " + commentuser);
-            JLabel datePosted = new JLabel(" at " + commentdate);
+            JLabel usernameLabel = new JLabel("• Posted by " + commentAuthorName);
+            JLabel datePosted = new JLabel(" at " + commentDate);
             datePosted.setForeground(Color.gray);
             subPanel.add(usernameLabel);
             subPanel.add(datePosted);
@@ -236,7 +233,7 @@ public class BlogFrame extends JFrame {
             bodyPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             bodyPanel.setBackground(Color.white);
 
-            JLabel bodyComment = new JLabel(commentbody);
+            JLabel bodyComment = new JLabel(commentContent);
             bodyPanel.add(bodyComment);
 
             JPanel buttonPanel = new JPanel();
@@ -246,7 +243,7 @@ public class BlogFrame extends JFrame {
             JButton commentButton = new JButton("Comment");
             buttonPanel.add(commentButton);
 
-            if (commentuser.equals(username)) {
+            if (commentAuthorID == userID) {
                 JButton editButton = new JButton("Edit");
                 JButton deleteButton = new JButton("Delete");
                 editButton.addActionListener(new ActionListener() {
@@ -266,13 +263,15 @@ public class BlogFrame extends JFrame {
                 editButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent ae) {
                         // Need to open EditBlogFrame(tobedone)
+//                         comment.editComment(String newComment);
                     }
                 });
 
                 deleteButton.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        commentModel.delete(commentID);
+
+                        comment.deleteComment();
                     }
                 });
             }
@@ -298,8 +297,8 @@ public class BlogFrame extends JFrame {
         return commentPanel;
     }
 
-    public static void main(String[] args) {
-        BlogFrame frame = new BlogFrame(blog,user);
-        frame.setVisible(true);
-    }
+//    public static void main(String[] args) {
+////        BlogFrame frame = new BlogFrame(int BID, int UID);
+////        frame.setVisible(true);
+//    }
 }

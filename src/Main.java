@@ -13,7 +13,8 @@ public class Main {
             public void run() {
                 try {
                     // open home frame
-                    HomePage homePage = new HomePage();
+                    // Open until login
+//                    HomePage homePage = new HomePage();
 
                     // and prompt login dialog
                     LoginForm loginForm = new LoginForm(homeFrame);

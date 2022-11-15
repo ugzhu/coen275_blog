@@ -58,17 +58,17 @@ public class Home {
                 // Search for blog
                 // if found, prompt blog frame
                 // Test blog and user
-                User user = new User();
-                Blog blog = new Blog();
-                if (false) {
-                    BlogFrame frame = new BlogFrame(blog,user);
-                    frame.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(home,
-                            "Blog not found",
-                            "Try again",
-                            JOptionPane.INFORMATION_MESSAGE);
-                }
+//                User user = new User();
+//                Blog blog = new Blog();
+//                if (false) {
+//                    BlogFrame frame = new BlogFrame(int BID, int UID);
+//                    frame.setVisible(true);
+//                } else {
+//                    JOptionPane.showMessageDialog(home,
+//                            "Blog not found",
+//                            "Try again",
+//                            JOptionPane.INFORMATION_MESSAGE);
+//                }
                 searchBar.setText("");
             }
         });

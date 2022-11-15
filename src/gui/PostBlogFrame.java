@@ -19,8 +19,11 @@ public class PostBlogFrame extends JFrame {
 
     JTextField blogTitle;
     JTextArea blogBody;
+    User user;
 
-    public PostBlogFrame(User u){
+    public PostBlogFrame(int UID){
+        int userID = UID;
+        user = User.getInstance(userID);
         contentPane = new JPanel();
         setTitle("Post a New Blog");
         setContentPane(contentPane);
@@ -38,16 +41,10 @@ public class PostBlogFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // read title and body, store under user's blog
-                String title = blogTitle.getText();
-                String content = blogBody.getText();
-                String userID = "test ID";
-                //
-                Model blog = BlogModel.instance();
-                HashMap<String, Object> newBlog = new HashMap();
-                newBlog.put("title", title);
-                newBlog.put("content", content);
-                newBlog.put("UID",userID);
-                blog.insert(newBlog);
+                String newTitle = blogTitle.getText();
+                String newContent = blogBody.getText();
+
+                user.addBlog(newTitle, newContent, userID);
             }
         });
 
@@ -59,8 +56,8 @@ public class PostBlogFrame extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        User user = new User();
-        PostBlogFrame postBlogFrame = new PostBlogFrame(user);
-    }
+//    public static void main(String[] args) {
+//        User user = new User();
+//        PostBlogFrame postBlogFrame = new PostBlogFrame(user);
+//    }
 }

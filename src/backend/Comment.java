@@ -10,34 +10,28 @@ import model.Model;
 import model.CommentModel;
 
 public class Comment extends CommentAbstract{
+
 	int commentID;
 	String content;
 	int userID;
-	public Comment(){
+	int blogID;
+	Model comment = CommentModel.instance();
 
+	public Comment(int CID, String content, int BID, int UID) {
+		commentID = CID;
+		this.content = content;
+		this.userID = UID;
+		this.blogID = BID;
 	}
-	public Comment(int cID) {
-		commentID = cID;
 
-
-		JButton editComment = new JButton("edit comment");
-		JButton deleteComment = new JButton("delete comment");
-		Model comment = CommentModel.instance();
-
-
-		editComment.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				HashMap<String, Object> editComment = new HashMap<>();
-				editComment.put("content", content);
-				comment.update(editComment);
-			}
-		});
-		deleteComment.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				comment.delete(commentID);
-			}
-		});
+	public void editComment(String newContent) {
+		HashMap<String, Object> editedComment = new HashMap<>();
+		editedComment.put("CID", commentID);
+		editedComment.put("content", newContent);
+		comment.update(editedComment);
 	}
+	public void deleteComment() {
+		comment.delete(commentID);
+	}
+
 }

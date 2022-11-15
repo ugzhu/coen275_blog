@@ -2,6 +2,9 @@ package gui;
 
 import backend.Blog;
 import backend.User;
+import model.BlogModel;
+import model.Model;
+import model.UserModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,32 +15,31 @@ import java.util.List;
 
 public class HomePage extends JFrame {
     JPanel contentPane;
-
     JPanel homePane;
     JPanel userPane;
-
     JButton homeButton;
     JButton userButton;
-
     JTextField searchBar;
-
     JButton postBlogButton;
 
 
     List<HashMap<String, Object>> allBlogs;
     List<HashMap<String, Object>> userBlogs;
-    List<HashMap<String, Object>> allComments;
 
-    //
-    HashMap<Integer,String> blogTitles;
     boolean isLogin;
-    User user;
+    int userID;
+    User currUser;
+    Model blog = BlogModel.instance();
+    Model user = UserModel.instance();
 
-    public HomePage(User user) {
 
-    }
+    public HomePage(int UID){
+        currUser = User.getInstance(UID);
+        userID = currUser.getUID();
 
-    public HomePage(){
+        userBlogs = currUser.getBlogList();
+        allBlogs = blog.getAll();
+
         setMinimumSize(new Dimension(1200,700));
         setSize(1200,700);
         contentPane = new JPanel();
@@ -46,6 +48,7 @@ public class HomePage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
     }
 
     public void addCards(Container containerPane){
@@ -66,20 +69,24 @@ public class HomePage extends JFrame {
                 // Search for blog
                 // if found, prompt blog frame
                 boolean found = false;
-                if(blogTitles.containsValue(text)) {
-                    found = true;
+                int targetBID = -1; // initialized
+
+                for (int i = 0; i < allBlogs.size(); i++) {
+                    if (text.equals((String) allBlogs.get(i).get("title"))) {
+                        targetBID = (int) allBlogs.get(i).get("BID");
+                        found = true;
+                        break;
+                    }
                 }
-                // Test blog and user
-                User user = new User();
-                Blog blog = new Blog();
+
                 if (found) {
-                    BlogFrame frame = new BlogFrame(blog,user);
+                    BlogFrame frame = new BlogFrame(targetBID, userID);
                     frame.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(containerPane,
-                            "Blog not found",
-                            "Try again",
-                            JOptionPane.INFORMATION_MESSAGE);
+                        "Blog not found",
+                        "Try again",
+                        JOptionPane.INFORMATION_MESSAGE);
                 }
                 searchBar.setText("");
             }
@@ -114,7 +121,7 @@ public class HomePage extends JFrame {
 
         ArrayList<Blog> blogList = new ArrayList<>();
 
-        ArrayList<JPanel> blogPanel = showPost(blogList);
+        ArrayList<JPanel> blogPanel = showPost(allBlogs);
         for (JPanel panel : blogPanel) {
             homeBlogScroll.add(panel);
             homeBlogScroll.add(Box.createRigidArea(new Dimension(0,10)));
@@ -142,10 +149,9 @@ public class HomePage extends JFrame {
         userBlogScroll.setLayout(new BoxLayout(homeBlogScroll, BoxLayout.PAGE_AXIS));
         homeBlogScroll.setBackground(contentPane.getBackground());
 
-        ArrayList<Blog> userblogList = new ArrayList<>();
 
-        ArrayList<JPanel> userblogPanel = showPost(userblogList);
-        for (JPanel panel : userblogPanel) {
+        ArrayList<JPanel> userBlogPanel = showPost(userBlogs);
+        for (JPanel panel : userBlogPanel) {
             userBlogScroll.add(panel);
             userBlogScroll.add(Box.createRigidArea(new Dimension(0,10)));
         }
@@ -189,21 +195,24 @@ public class HomePage extends JFrame {
         postBlogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PostBlogFrame postBlogFrame = new PostBlogFrame(user);
+                PostBlogFrame postBlogFrame = new PostBlogFrame(userID);
             }
         });
     }
 
-    public ArrayList<JPanel> showPost(ArrayList<Blog> list) {
+    public ArrayList<JPanel> showPost(List<HashMap<String, Object>> list) {
         ArrayList<JPanel> blogPanel = new ArrayList<>();
         // add pane for each blog
-        for (Blog blog : list) {
-            //test variables - to be changed
-            String blogtitle = "test title";
-            String bloguser = "test bloguser";
-            String blogdate = "test data";
-            String blogbody = "test body";
-            String username = "test user";
+        for (HashMap blog : list) {
+            // test variables - to be changed
+            // no data
+            String blogDate = "test data";
+
+            String blogTitle = (String) blog.get("title");
+            String blogContent = (String) blog.get("content");
+            int blogID = (int) blog.get("BID");
+            int authorID = (int) blog.get("UID");
+            String authorName = (String) user.getWithUid(authorID).get(0).get("username");
 
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -214,10 +223,10 @@ public class HomePage extends JFrame {
             JPanel subPanel = new JPanel();
             subPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             subPanel.setBackground(Color.white);
-            JLabel titleLabel = new JLabel(blogtitle);
+            JLabel titleLabel = new JLabel(blogTitle);
             //titleLabel.setFont(xxxx);
-            JLabel usernameLabel = new JLabel("• Posted by " + bloguser);
-            JLabel datePosted = new JLabel(" at " + blogdate);
+            JLabel usernameLabel = new JLabel("• Posted by " + authorName);
+            JLabel datePosted = new JLabel(" at " + blogDate);
             datePosted.setForeground(Color.gray);
             subPanel.add(titleLabel);
             subPanel.add(usernameLabel);
@@ -228,10 +237,10 @@ public class HomePage extends JFrame {
             bodyPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             bodyPanel.setBackground(Color.white);
 
-            if (blogbody.length() >= 80) {
+            if (blogContent.length() >= 80) {
                 String text = "<html>";
-                for (int i = 0; i < blogbody.length(); i++) {
-                    text += blogbody.charAt(i);
+                for (int i = 0; i < blogContent.length(); i++) {
+                    text += blogContent.charAt(i);
                     if (text.length() % 80 == 0) {
                         text += "<br>";
                     }
@@ -241,7 +250,7 @@ public class HomePage extends JFrame {
                 bodyPanel.add(bodyPost);
             }
             else {
-                JLabel bodyPost = new JLabel(blogbody);
+                JLabel bodyPost = new JLabel(blogContent);
                 bodyPanel.add(bodyPost);
             }
 
@@ -249,18 +258,16 @@ public class HomePage extends JFrame {
             buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             buttonPanel.setBackground(panel.getBackground());
 
-            ArrayList<Integer> blogcommentlist = blog.commentList;
-            // show comments? or no?
 
             JButton commentButton = new JButton("Comment");
             buttonPanel.add(commentButton);
 
-            if (bloguser.equals(username)) {
+            if (authorName.equals(currUser.getUsername())) {
                 JButton editButton = new JButton("Setting");
                 buttonPanel.add(editButton);
                 editButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent ae) {
-                        EditBlogFrame editBlogFrame = new EditBlogFrame(blog,user);
+                        EditBlogFrame editBlogFrame = new EditBlogFrame(blogID,userID);
                     }
                 });
             }
@@ -318,7 +325,7 @@ public class HomePage extends JFrame {
             // add mouse listener for this whole panel
             panel.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
-                    BlogFrame blogFrame = new BlogFrame(blog, user);
+                    BlogFrame blogFrame = new BlogFrame(blogID, userID);
                     blogFrame.setVisible(true);
                 }
             });
@@ -327,18 +334,19 @@ public class HomePage extends JFrame {
         return blogPanel;
     }
 
-    public static void main(String[] args) {
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    // open home frame
-                    HomePage homePage = new HomePage();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//
+//        EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    // open home frame
+////                    HomePage homePage = new HomePage();
+//                    // open login
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//    }
 
 }

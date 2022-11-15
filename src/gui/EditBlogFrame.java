@@ -21,7 +21,9 @@ public class EditBlogFrame extends JFrame {
     JTextField blogTitle;
     JTextArea blogBody;
 
-    public EditBlogFrame(Blog b, User u){
+    Blog blog;
+
+    public EditBlogFrame(int BID, int UID){
         contentPane = new JPanel();
         setTitle("Edit Blog");
         setContentPane(contentPane);
@@ -36,28 +38,26 @@ public class EditBlogFrame extends JFrame {
         blogTitle = new JTextField();
         blogBody = new JTextArea();
 
-        Model blog = BlogModel.instance();
-        int blogID = 1;
+        int blogID = BID;
+        blog = Blog.getInstance(blogID);
+
 
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // read title and body, store under user's blog
-                String title = blogTitle.getText();
-                String content = blogBody.getText();
+                String newTitle = blogTitle.getText();
+                String newContent = blogBody.getText();
                 //
-                HashMap<String, Object> editBlog = new HashMap<>();
-                editBlog.put("title", title);
-                editBlog.put("content", content);
-                editBlog.put("BID", blogID);
-                blog.update(editBlog);
+                blog.editBlog(newTitle, newContent);
             }
         });
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                blog.delete(blogID);
+
+                blog.deleteBlog(blogID);
             }
         });
 
@@ -68,10 +68,9 @@ public class EditBlogFrame extends JFrame {
             }
         });
     }
-
-    public static void main(String[] args) {
-        User u = new User();
-        Blog b = new Blog();
-        EditBlogFrame editBlogFrame = new EditBlogFrame(b,u);
-    }
+//
+//    public static void main(String[] args) {
+//
+//        EditBlogFrame editBlogFrame = new EditBlogFrame(BID,UID);
+//    }
 }

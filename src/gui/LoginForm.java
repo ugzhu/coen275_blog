@@ -22,7 +22,6 @@ public class LoginForm extends JDialog {
 
     //// to be changed
     int userID;
-    List<HashMap<String, Object>> userBlogs;
 
     public LoginForm (JFrame parent) {
         super(parent);
@@ -46,9 +45,10 @@ public class LoginForm extends JDialog {
                             JOptionPane.ERROR_MESSAGE);
                 } else {
                     userID = (int) check.get("UID");
-                    User user = User.getInstance(userID);
-                    userBlogs = user.getBlogList(userID);
-                    // close window
+//                    User user = User.getInstance(userID);
+
+                    // redirect HomePage(userID)
+                    HomePage homePage = new HomePage(userID);
                 }
 
             }
