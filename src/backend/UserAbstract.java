@@ -1,10 +1,14 @@
 package backend;
 
+import model.BlogModel;
+import model.Model;
+
 import java.util.List;
 import java.util.HashMap;
 
-public abstract class UserAbstract {
-	int userID;
-	List<HashMap<String, Object>> blogList;
-
+public interface UserAbstract {
+	public List<HashMap<String, Object>> getBlogList();
+	public void addBlog(String title, String content, int UID);
+	public int getUID();
+	public String getUsername();
 }

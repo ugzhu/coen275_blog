@@ -6,9 +6,7 @@ import model.Model;
 import model.UserModel;
 import model.BlogModel;
 
-public class User extends UserAbstract {
-
-	private static User instance;
+public class User implements UserAbstract {
 	private int userID;
 	private String username;
 
@@ -16,7 +14,14 @@ public class User extends UserAbstract {
 
 	Model user = UserModel.instance();
 	Model blog = BlogModel.instance();
-	public User() {
+
+	static private User instance_  = new User();
+
+	static public User instance() {
+		return instance_;
+	}
+
+	private User() {
 
 	}
 
@@ -40,11 +45,7 @@ public class User extends UserAbstract {
 		return username;
 	}
 
-	public static User getInstance(int uid) {
-		if (instance == null) {
-			instance = new User();
-			instance.userID = uid;
-		}
-		return instance;
+	public void logout(){
+		instance_ = null;
 	}
 }

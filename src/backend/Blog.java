@@ -6,19 +6,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Blog extends BlogAbstract{
-
-	private static Blog instance;
+public class Blog implements BlogAbstract{
 	private int blogID;
 	List<HashMap<String, Object>> commentsList;
 	Model comment = CommentModel.instance();
 	Model blog = BlogModel.instance();
 	Model user = UserModel.instance();
 
+	// Singleton
+	static private Blog instance_  = new Blog();
 
-	public Blog(int BID) {
-		blogID = BID;
+	static public Blog instance() {
+		return instance_;
 	}
+
+	private Blog() {
+
+	}
+
+	public void setId(int BID){
+		this.blogID = BID;
+	}
+
 	public List<HashMap<String, Object>> getCommentList() {
 		commentsList = comment.getWithBid(blogID);
 		return commentsList;
@@ -39,11 +48,13 @@ public class Blog extends BlogAbstract{
 	}
 	public void deleteBlog(int BID) {
 		blog.delete(BID);
-		getInstance(-1);
+		instance_ = null;
 	}
+
 	public int getBID() {
 		return blogID;
 	}
+
 	public void addComment(String content, int UID) {
 		HashMap<String, Object> newComment = new HashMap<>();
 		newComment.put("content", content);
@@ -51,13 +62,4 @@ public class Blog extends BlogAbstract{
 		newComment.put("UID", UID);
 		comment.insert(newComment);
 	}
-	public static Blog getInstance(int bid) {
-		if (instance == null) {
-			instance = new Blog(bid);
-		} else if (bid == -1) {
-			instance = null;
-		}
-		return instance;
-	}
-
 }

@@ -1,7 +1,8 @@
 package backend;
 
-public abstract class CommentAbstract {
-	
-	
-	
+import java.util.HashMap;
+
+public interface CommentAbstract {
+        public void editComment(String newContent);
+        public void deleteComment();
 }

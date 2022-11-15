@@ -9,7 +9,7 @@ import java.util.HashMap;
 import model.Model;
 import model.CommentModel;
 
-public class Comment extends CommentAbstract{
+public class Comment implements CommentAbstract{
 
 	int commentID;
 	String content;
