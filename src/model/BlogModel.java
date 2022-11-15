@@ -75,6 +75,7 @@ public class BlogModel implements Model{
         return resList;
     }
 
+    // *******
     public List<HashMap<String, Object>> getWithBid(int BID) {
         HashMap<String, Object> resMap = new HashMap<>();
         List<HashMap<String, Object>> resList = new ArrayList<>();
@@ -118,3 +119,4 @@ public class BlogModel implements Model{
     }
 
 }
+
