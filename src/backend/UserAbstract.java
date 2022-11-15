@@ -1,8 +1,5 @@
 package backend;
 
-import model.BlogModel;
-import model.Model;
-
 import java.util.List;
 import java.util.HashMap;
 

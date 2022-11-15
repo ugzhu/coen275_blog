@@ -22,7 +22,6 @@ public class User implements UserAbstract {
 	}
 
 	private User() {
-
 	}
 
 	public List<HashMap<String, Object>> getBlogList() {
@@ -37,12 +36,32 @@ public class User implements UserAbstract {
 		newBlog.put("UID", UID);
 		blog.insert(newBlog);
 	}
+	public void setUID(int UID){
+		this.userID = UID;
+	}
 	public int getUID() {
 		return userID;
 	}
 	public String getUsername() {
 		this.username = (String) user.getWithUid(0).get(0).get("username");
 		return username;
+	}
+	public String getNameWithUID(int UID) {
+		return (String) user.getWithUid(UID).get(0).get("username");
+	}
+	public int login(String username, char[] password) {
+		HashMap<String, Object> check = user.getWithUsername(username).get(0);
+		if (check == null || ! Arrays.equals(check.get("password").toString().toCharArray(), password)) {
+			return -1;
+		} else {
+			return (int) check.get("UID");
+		}
+	}
+	public void register(String username, char[] password) {
+		HashMap<String, Object> newUser = new HashMap<>();
+		newUser.put("username", username);
+		newUser.put("password", password.toString());
+		user.insert(newUser);;
 	}
 
 	public void logout(){

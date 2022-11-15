@@ -1,8 +1,5 @@
 package gui;
 
-import backend.Blog;
-import backend.User;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,16 +1,11 @@
 package gui;
 
-import backend.User;
-import model.Model;
-import model.UserModel;
+import backend.BackendConsole;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class LoginForm extends JDialog {
     private JPanel loginPanel;
@@ -22,6 +17,7 @@ public class LoginForm extends JDialog {
 
     //// to be changed
     int userID;
+    BackendConsole bc;
 
     public LoginForm (JFrame parent) {
         super(parent);
@@ -31,23 +27,20 @@ public class LoginForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        Model user = UserModel.instance();
+        bc = BackendConsole.instance();
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                HashMap<String, Object> check = user.getWithUsername(usernameInput.getText()).get(0);
-                if (check == null || ! Arrays.equals(check.get("password").toString().toCharArray(), passwordInput.getPassword())) {
+                int ifUserID = bc.user.login(usernameInput.getText(), passwordInput.getPassword());
+                if (ifUserID == -1){
                     JOptionPane.showMessageDialog(loginPanel,
                             "Login Failed",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    userID = (int) check.get("UID");
-//                    User user = User.getInstance(userID);
-
-                    // redirect HomePage(userID)
+                    userID = ifUserID;
                     HomePage homePage = new HomePage(userID);
                 }
 

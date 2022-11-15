@@ -1,15 +1,11 @@
 package gui;
 
-import backend.Blog;
-import backend.User;
-import model.BlogModel;
-import model.Model;
+import backend.BackendConsole;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class EditBlogFrame extends JFrame {
     JPanel contentPane;
@@ -21,9 +17,10 @@ public class EditBlogFrame extends JFrame {
     JTextField blogTitle;
     JTextArea blogBody;
 
-    Blog blog;
 
     public EditBlogFrame(int BID, int UID){
+        BackendConsole bc = BackendConsole.instance();
+        bc.blog.setBID(BID);
         contentPane = new JPanel();
         setTitle("Edit Blog");
         setContentPane(contentPane);
@@ -39,8 +36,6 @@ public class EditBlogFrame extends JFrame {
         blogBody = new JTextArea();
 
         int blogID = BID;
-        blog = Blog.getInstance(blogID);
-
 
         updateButton.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +44,7 @@ public class EditBlogFrame extends JFrame {
                 String newTitle = blogTitle.getText();
                 String newContent = blogBody.getText();
                 //
-                blog.editBlog(newTitle, newContent);
+                bc.blog.editBlog(newTitle, newContent);
             }
         });
 
@@ -57,7 +52,7 @@ public class EditBlogFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                blog.deleteBlog(blogID);
+                bc.blog.deleteBlog(blogID);
             }
         });
 

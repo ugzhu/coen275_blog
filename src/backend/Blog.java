@@ -2,7 +2,6 @@ package backend;
 
 import model.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,8 +23,11 @@ public class Blog implements BlogAbstract{
 
 	}
 
-	public void setId(int BID){
+	public void setBID(int BID){
 		this.blogID = BID;
+	}
+	public List<HashMap<String, Object>> getAll() {
+		return blog.getAll();
 	}
 
 	public List<HashMap<String, Object>> getCommentList() {

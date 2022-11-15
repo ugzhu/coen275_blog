@@ -1,9 +1,6 @@
 package gui;
 
-import backend.Blog;
-import backend.Comment;
-import backend.User;
-import model.*;
+import backend.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,17 +23,17 @@ public class BlogFrame extends JFrame {
     int blogID;
     int userID;
     HashMap<String, Object> blogInfo;
-    Blog blog;
     // comments
     List<HashMap<String, Object>> allComments;
-    Model user = UserModel.instance();
+    BackendConsole bc;
 
     public BlogFrame(int BID, int UID){
 
+        bc = BackendConsole.instance();
+        bc.blog.setBID(BID);
         // test variables to be changed
-        blog = Blog.getInstance(BID);
-        allComments = blog.getCommentList();
-        blogInfo = blog.getBlogInfo(BID);
+        allComments = bc.blog.getCommentList();
+        blogInfo = bc.blog.getBlogInfo(BID);
 
         blogID = BID;
         userID = UID;
@@ -124,7 +121,7 @@ public class BlogFrame extends JFrame {
                 addCommentButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         String commentContent = commentText.getText();
-                        blog.addComment(commentContent, userID);
+                        bc.blog.addComment(commentContent, userID);
                     }
                 });
                 buttonPanel.add(addCommentButton);
@@ -155,7 +152,7 @@ public class BlogFrame extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
 
-                    blog.deleteBlog(blogID);
+                    bc.blog.deleteBlog(blogID);
                     blogID = -1;
                     // redirect to Home
                 }
@@ -207,7 +204,7 @@ public class BlogFrame extends JFrame {
             int commentID = (int) commentList.get(i).get("CID");
             String commentDate = "test comment data";
             int commentAuthorID = (int) commentList.get(i).get("UID");
-            String commentAuthorName = (String) user.getWithUid(commentAuthorID).get(0).get("username");
+            String commentAuthorName = bc.user.getNameWithUID(commentAuthorID);
             int blogID = (int) commentList.get(i).get("BID");
 
             Comment comment = new Comment(commentID, commentContent, commentAuthorID, blogID);

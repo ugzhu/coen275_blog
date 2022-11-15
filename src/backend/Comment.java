@@ -1,9 +1,5 @@
 package backend;
 
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import java.util.HashMap;
 
 import model.Model;

@@ -1,10 +1,6 @@
 package gui;
 
-import backend.Blog;
-import backend.User;
-import model.BlogModel;
-import model.Model;
-import model.UserModel;
+import backend.BackendConsole;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,17 +24,16 @@ public class HomePage extends JFrame {
 
     boolean isLogin;
     int userID;
-    User currUser;
-    Model blog = BlogModel.instance();
-    Model user = UserModel.instance();
+    BackendConsole bc;
 
 
     public HomePage(int UID){
-        currUser = User.getInstance(UID);
-        userID = currUser.getUID();
+        bc = BackendConsole.instance();
+        bc.user.setUID(UID);
+        userID = bc.user.getUID();
 
-        userBlogs = currUser.getBlogList();
-        allBlogs = blog.getAll();
+        userBlogs = bc.user.getBlogList();
+        allBlogs = bc.blog.getAll();
 
         setMinimumSize(new Dimension(1200,700));
         setSize(1200,700);
@@ -118,8 +113,6 @@ public class HomePage extends JFrame {
 
         homeBlogScroll.setLayout(new BoxLayout(homeBlogScroll, BoxLayout.PAGE_AXIS));
         homeBlogScroll.setBackground(homePane.getBackground());
-
-        ArrayList<Blog> blogList = new ArrayList<>();
 
         ArrayList<JPanel> blogPanel = showPost(allBlogs);
         for (JPanel panel : blogPanel) {
@@ -212,7 +205,7 @@ public class HomePage extends JFrame {
             String blogContent = (String) blog.get("content");
             int blogID = (int) blog.get("BID");
             int authorID = (int) blog.get("UID");
-            String authorName = (String) user.getWithUid(authorID).get(0).get("username");
+            String authorName = (String) bc.user.getNameWithUID(authorID);
 
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -262,7 +255,7 @@ public class HomePage extends JFrame {
             JButton commentButton = new JButton("Comment");
             buttonPanel.add(commentButton);
 
-            if (authorName.equals(currUser.getUsername())) {
+            if (authorName.equals(this.bc.user.getUsername())) {
                 JButton editButton = new JButton("Setting");
                 buttonPanel.add(editButton);
                 editButton.addActionListener(new ActionListener() {

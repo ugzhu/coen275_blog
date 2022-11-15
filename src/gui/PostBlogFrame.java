@@ -1,14 +1,11 @@
 package gui;
 
-import backend.User;
-import model.BlogModel;
-import model.Model;
+import backend.BackendConsole;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class PostBlogFrame extends JFrame {
 
@@ -19,11 +16,12 @@ public class PostBlogFrame extends JFrame {
 
     JTextField blogTitle;
     JTextArea blogBody;
-    User user;
+    BackendConsole bc;
 
     public PostBlogFrame(int UID){
+        bc = BackendConsole.instance();
+        bc.user.setUID(UID);
         int userID = UID;
-        user = User.getInstance(userID);
         contentPane = new JPanel();
         setTitle("Post a New Blog");
         setContentPane(contentPane);
@@ -44,7 +42,7 @@ public class PostBlogFrame extends JFrame {
                 String newTitle = blogTitle.getText();
                 String newContent = blogBody.getText();
 
-                user.addBlog(newTitle, newContent, userID);
+                bc.user.addBlog(newTitle, newContent, userID);
             }
         });
 
