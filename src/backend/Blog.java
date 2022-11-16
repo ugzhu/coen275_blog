@@ -7,6 +7,10 @@ import java.util.List;
 
 public class Blog implements BlogAbstract{
 	private int blogID;
+	private String title;
+	private String content;
+	private int authorID;
+
 	List<HashMap<String, Object>> commentsList;
 	Model comment = CommentModel.instance();
 	Model blog = BlogModel.instance();
@@ -14,7 +18,6 @@ public class Blog implements BlogAbstract{
 
 	// Singleton
 	static private Blog instance_  = new Blog();
-
 	static public Blog instance() {
 		return instance_;
 	}
@@ -31,8 +34,19 @@ public class Blog implements BlogAbstract{
 	}
 
 	public List<HashMap<String, Object>> getCommentList() {
-		commentsList = comment.getWithBid(blogID);
 		return commentsList;
+	}
+
+	public String getTitle(){
+		return this.title;
+	}
+
+	public String getContent(){
+		return this.content;
+	}
+
+	public int getUID(){
+		return authorID;
 	}
 
 	public HashMap<String, Object> getBlogInfo(int BID) {
@@ -51,6 +65,15 @@ public class Blog implements BlogAbstract{
 	public void deleteBlog(int BID) {
 		blog.delete(BID);
 		instance_ = null;
+	}
+
+	public void setBlog(int BID) {
+		HashMap<String, Object> info = blog.getWithBid(BID).get(0);
+		this.blogID = (int) info.get("BID");
+		this.authorID = (int) info.get("UID");
+		this.content = (String) info.get("content");
+		this.title = (String) info.get("title");
+		commentsList = comment.getWithBid(blogID);
 	}
 
 	public int getBID() {

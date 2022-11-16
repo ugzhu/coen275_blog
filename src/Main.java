@@ -1,8 +1,7 @@
-package ui;
-
 import backend.User;
 import model.Model;
 import model.UserModel;
+import ui.MainFrame;
 
 import javax.swing.*;
 

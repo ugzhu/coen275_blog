@@ -42,21 +42,30 @@ public class User implements UserAbstract {
 	public int getUID() {
 		return userID;
 	}
-	public String getUsername() {
-		this.username = (String) user.getWithUid(0).get(0).get("username");
-		return username;
-	}
+//	public String getUsername() {
+//		this.username = (String) user.getWithUid(0).get(0).get("username");
+//		return username;
+//	}
 	public String getNameWithUID(int UID) {
 		return (String) user.getWithUid(UID).get(0).get("username");
 	}
 	public int login(String username, char[] password) {
-		HashMap<String, Object> check = user.getWithUsername(username).get(0);
-		if (check == null || ! Arrays.equals(check.get("password").toString().toCharArray(), password)) {
+		HashMap<String, Object> check;
+		try {
+			 check = user.getWithUsername(username).get(0);
+		}catch(Exception e){
+			return -1;
+		}
+
+		if (! Arrays.equals(check.get("password").toString().toCharArray(), password)) {
 			return -1;
 		} else {
-			return (int) check.get("UID");
+			this.userID = (int) check.get("UID");
+			this.username = getNameWithUID(this.userID);
+			return 0;
 		}
 	}
+
 	public void register(String username, char[] password) {
 		HashMap<String, Object> newUser = new HashMap<>();
 		newUser.put("username", username);
