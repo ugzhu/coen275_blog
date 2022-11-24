@@ -1,11 +1,10 @@
-package backend;
+package controller;
 
 import java.util.HashMap;
-
 import model.Model;
 import model.CommentModel;
 
-public class Comment implements CommentAbstract{
+public class CommentList{
 
 	int commentID;
 	String content;
@@ -13,7 +12,7 @@ public class Comment implements CommentAbstract{
 	int blogID;
 	Model comment = CommentModel.instance();
 
-	public Comment(int CID, String content, int BID, int UID) {
+	public CommentList(int CID, String content, int BID, int UID) {
 		commentID = CID;
 		this.content = content;
 		this.userID = UID;

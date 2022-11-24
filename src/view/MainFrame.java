@@ -1,6 +1,6 @@
-package ui;
+package view;
 
-import backend.BackendConsole;
+import controller.BackendConsole;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -67,39 +67,16 @@ public class MainFrame extends JFrame{
     private JTextField registerUsernameField;
     private JPasswordField registerPasswordField;
     private JButton loginToRegisterBtn;
-    private JLabel login;
     private CardLayout cLayout;
     private BackendConsole bc;
     private boolean isLoggedIn = false;
     private DefaultTableModel myIndexTableModel;
     private DefaultTableModel myBlogTableModel;
     private DefaultTableModel myBlogDetailTableModel;
+
     public MainFrame(){
-        myIndexTableModel = new DefaultTableModel();
-        myIndexTableModel.addColumn("title");
-        myIndexTableModel.addColumn("content");
-        myIndexTableModel.addColumn("BID");
-        indexTable.setModel(myIndexTableModel);
-        indexTable.removeColumn(indexTable.getColumnModel().getColumn(2));
-
-        myBlogTableModel = new DefaultTableModel();
-        myBlogTableModel.addColumn("title");
-        myBlogTableModel.addColumn("content");
-        myBlogTableModel.addColumn("BID");
-        myBlogTable.setModel(myBlogTableModel);
-        myBlogTable.removeColumn(myBlogTable.getColumnModel().getColumn(2));
-
-
-        myBlogDetailTableModel = new DefaultTableModel();
-        myBlogDetailTableModel.addColumn("comment");
-        myBlogDetailTableModel.addColumn("");
-        myBlogDetailTableModel.addColumn("CID");
-        blogDetailTable.setModel(myBlogDetailTableModel);
-        blogDetailTable.getColumnModel().removeColumn(blogDetailTable.getColumnModel().getColumn(2));
-
-
         setTitle("Team 5 Blog Application");
-        setSize(600, 300);
+        setSize(800, 500);
         setContentPane(contentPane);
         cLayout = new CardLayout();
         contentPane.setLayout(cLayout);
@@ -112,232 +89,16 @@ public class MainFrame extends JFrame{
         contentPane.add(editBlogPane, "editBlog");
         contentPane.add(editCommentPane, "editComment");
         contentPane.add(registerPane, "register");
+
         bc = BackendConsole.instance();
+        initializeTables();
+        addListeners();
 
         if (isLoggedIn){
             loadIndex();
         }else{
             logOut();
         }
-
-
-        myToIndexBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                loadIndex();
-            }
-        });
-
-        indexToMyBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                loadMyBlog();
-            }
-        });
-
-        loginBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                if(bc.user.login(usernameField.getText(), passwordField.getPassword()) == 0){
-                    loadIndex();
-                }else{
-                    loginPrompt.setText("Incorrect username or password!");
-                    loginPrompt.setForeground(Color.RED);
-                    usernameField.setText("");
-                    passwordField.setText("");
-                }
-            }
-        });
-
-        myBlogLogOutBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                logOut();
-            }
-        });
-
-        blogDetailToLogOutBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                logOut();
-            }
-        });
-
-
-        indexLogOutBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                isLoggedIn = true;
-                logOut();
-            }
-        });
-
-        blogDetailToIndexBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadIndex();
-            }
-        });
-
-        indexTable.addComponentListener(new ComponentAdapter() {
-        });
-        indexTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                int BID = (int) indexTable.getModel().getValueAt(indexTable.getSelectedRow(), 2);
-
-                loadBlogDetail(BID);
-            }
-        });
-
-
-        myBlogTable.addComponentListener(new ComponentAdapter() {
-        });
-        myBlogTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                int BID = (int) myBlogTable.getModel().getValueAt(myBlogTable.getSelectedRow(), 2);
-                loadBlogDetail(BID);
-            }
-        });
-
-        indexToNewBlogBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadNewBlog();
-            }
-        });
-
-
-        newBlogToIndexBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadIndex();
-            }
-        });
-
-        createBlogBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String title = newBlogTitleField.getText();
-                String content = newBlogContentField.getText();
-                int UID = bc.user.getUID();
-                bc.blog.create(title, content, UID);
-                newBlogTitleField.setText("");
-                newBlogContentField.setText("");
-                loadIndex();
-            }
-        });
-        leaveACommentButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadNewComment();
-            }
-        });
-        newCommentToBlogDetailBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-
-        createCommentBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String comment = commentField.getText();
-                int BID = bc.blog.getBID();
-                int UID = bc.user.getUID();
-                bc.comment.createComment(comment, BID, UID);
-                commentField.setText("");
-                loadBlogDetail(BID);
-            }
-        });
-        blogDetailUpdateBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadEditBlog();
-            }
-        });
-        editBlogToBlogDetailBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-        updateBlogBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String title = editBlogTitleField.getText();
-                String content = editBlogContentField.getText();
-                bc.blog.editBlog(title, content);
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-        deleteBlogBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                bc.blog.deleteBlog(bc.blog.getBID());
-                loadIndex();
-            }
-        });
-
-        editCommentToBlogDetailBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-
-
-        blogDetailTable.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent mouseEvent) {
-                JTable table =(JTable) mouseEvent.getSource();
-                Point point = mouseEvent.getPoint();
-                int row = table.rowAtPoint(point);
-                int col = table.columnAtPoint(point);
-                String clicked = blogDetailTable.getModel().getValueAt(row, col).toString();
-
-                if (clicked.equals("Click to update/delete")) {
-                    int CID = (int) blogDetailTable.getModel().getValueAt(row, 2);
-                    String comment = blogDetailTable.getModel().getValueAt(row, 0).toString();
-                    loadEditComment(CID, comment);
-                }
-            }
-        });
-
-        deleteCommentBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int CID = Integer.parseInt(commentDetailCID.getText());
-                bc.comment.deleteComment(CID);
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-
-        updateCommentBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int CID = Integer.parseInt(commentDetailCID.getText());
-                String comment = commentDetailField.getText();
-                bc.comment.updateComment(CID, comment);
-                loadBlogDetail(bc.blog.getBID());
-            }
-        });
-        loginToRegisterBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadRegister();
-            }
-        });
-        registerToLoginBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                logOut();
-            }
-        });
-
-        registerBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String usr = registerUsernameField.getText();
-                String pwd = new String(registerPasswordField.getPassword());
-                bc.user.register(usr, pwd);
-                registerPasswordField.setText("");
-                registerUsernameField.setText("");
-                logOut();
-             }
-        });
     }
 
     private void loadIndex(){
@@ -413,5 +174,253 @@ public class MainFrame extends JFrame{
 
     private void loadRegister(){
         cLayout.show(contentPane, "register");
+    }
+
+    private void addListeners() {
+        myToIndexBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                loadIndex();
+            }
+        });
+
+        indexToMyBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                loadMyBlog();
+            }
+        });
+
+        loginBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                if(bc.user.login(usernameField.getText(), passwordField.getPassword()) == 0){
+                    loadIndex();
+                }else{
+                    loginPrompt.setText("Incorrect username or password!");
+                    loginPrompt.setForeground(Color.RED);
+                    usernameField.setText("");
+                    passwordField.setText("");
+                }
+            }
+        });
+
+        myBlogLogOutBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                logOut();
+            }
+        });
+
+        blogDetailToLogOutBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                logOut();
+            }
+        });
+
+        indexLogOutBtn.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                isLoggedIn = true;
+                logOut();
+            }
+        });
+
+        blogDetailToIndexBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadIndex();
+            }
+        });
+
+        indexTable.addComponentListener(new ComponentAdapter() {
+        });
+        indexTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int BID = (int) indexTable.getModel().getValueAt(indexTable.getSelectedRow(), 2);
+
+                loadBlogDetail(BID);
+            }
+        });
+
+        myBlogTable.addComponentListener(new ComponentAdapter() {
+        });
+        myBlogTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int BID = (int) myBlogTable.getModel().getValueAt(myBlogTable.getSelectedRow(), 2);
+                loadBlogDetail(BID);
+            }
+        });
+
+        indexToNewBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadNewBlog();
+            }
+        });
+
+        newBlogToIndexBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadIndex();
+            }
+        });
+
+        createBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String title = newBlogTitleField.getText();
+                String content = newBlogContentField.getText();
+                int UID = bc.user.getUID();
+                bc.blog.create(title, content, UID);
+                newBlogTitleField.setText("");
+                newBlogContentField.setText("");
+                loadIndex();
+            }
+        });
+
+        leaveACommentButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadNewComment();
+            }
+        });
+
+        newCommentToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        createCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String comment = commentField.getText();
+                int BID = bc.blog.getBID();
+                int UID = bc.user.getUID();
+                bc.comment.createComment(comment, BID, UID);
+                commentField.setText("");
+                loadBlogDetail(BID);
+            }
+        });
+
+        blogDetailUpdateBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadEditBlog();
+            }
+        });
+
+        editBlogToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        updateBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String title = editBlogTitleField.getText();
+                String content = editBlogContentField.getText();
+                bc.blog.editBlog(title, content);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        deleteBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                bc.blog.deleteBlog(bc.blog.getBID());
+                loadIndex();
+            }
+        });
+
+        editCommentToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        blogDetailTable.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                int col = table.columnAtPoint(point);
+                String clicked = blogDetailTable.getModel().getValueAt(row, col).toString();
+
+                if (clicked.equals("Click to update/delete")) {
+                    int CID = (int) blogDetailTable.getModel().getValueAt(row, 2);
+                    String comment = blogDetailTable.getModel().getValueAt(row, 0).toString();
+                    loadEditComment(CID, comment);
+                }
+            }
+        });
+
+        deleteCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int CID = Integer.parseInt(commentDetailCID.getText());
+                bc.comment.deleteComment(CID);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        updateCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int CID = Integer.parseInt(commentDetailCID.getText());
+                String comment = commentDetailField.getText();
+                bc.comment.updateComment(CID, comment);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        loginToRegisterBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadRegister();
+            }
+        });
+
+        registerToLoginBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                logOut();
+            }
+        });
+
+        registerBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String usr = registerUsernameField.getText();
+                String pwd = new String(registerPasswordField.getPassword());
+                bc.user.register(usr, pwd);
+                registerPasswordField.setText("");
+                registerUsernameField.setText("");
+                logOut();
+            }
+        });
+    }
+
+    private void initializeTables() {
+        myIndexTableModel = new DefaultTableModel();
+        myIndexTableModel.addColumn("title");
+        myIndexTableModel.addColumn("content");
+        myIndexTableModel.addColumn("BID");
+        indexTable.setModel(myIndexTableModel);
+        indexTable.removeColumn(indexTable.getColumnModel().getColumn(2));
+
+        myBlogTableModel = new DefaultTableModel();
+        myBlogTableModel.addColumn("title");
+        myBlogTableModel.addColumn("content");
+        myBlogTableModel.addColumn("BID");
+        myBlogTable.setModel(myBlogTableModel);
+        myBlogTable.removeColumn(myBlogTable.getColumnModel().getColumn(2));
+
+
+        myBlogDetailTableModel = new DefaultTableModel();
+        myBlogDetailTableModel.addColumn("comment");
+        myBlogDetailTableModel.addColumn("");
+        myBlogDetailTableModel.addColumn("CID");
+        blogDetailTable.setModel(myBlogDetailTableModel);
+        blogDetailTable.getColumnModel().removeColumn(blogDetailTable.getColumnModel().getColumn(2));
     }
 }

@@ -1,4 +1,4 @@
-package backend;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 public class BackendConsole {
     public User user;
     public Blog blog;
-    public CommentController comment;
-    public List<Comment> comments;
+    public Comment comment;
+    public List<CommentList> commentLists;
 
     static private BackendConsole instance_  = new BackendConsole();
 
@@ -18,8 +18,8 @@ public class BackendConsole {
     private BackendConsole() {
         user = User.instance();
         blog = Blog.instance();
-        comment = CommentController.instance();
-        comments = new ArrayList<>();
+        comment = Comment.instance();
+        commentLists = new ArrayList<>();
     }
 
 }

@@ -1,20 +1,17 @@
-package backend;
+package controller;
 
 import model.CommentModel;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class CommentController {
+public class Comment implements CommentAbstract{
     private CommentModel commentModel = CommentModel.instance();
-    static private CommentController instance_  = new CommentController();
+    static private Comment instance_  = new Comment();
 
-    static public CommentController instance() {
+    static public Comment instance() {
         return instance_;
     }
 
-    private CommentController() {
+    private Comment() {
     }
 
     public void createComment(String content, int BID, int UID){

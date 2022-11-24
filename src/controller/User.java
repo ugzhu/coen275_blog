@@ -1,7 +1,6 @@
-package backend;
+package controller;
 
 import java.util.*;
-
 import model.Model;
 import model.UserModel;
 import model.BlogModel;
@@ -39,16 +38,15 @@ public class User implements UserAbstract {
 	public void setUID(int UID){
 		this.userID = UID;
 	}
+
 	public int getUID() {
 		return userID;
 	}
-//	public String getUsername() {
-//		this.username = (String) user.getWithUid(0).get(0).get("username");
-//		return username;
-//	}
+
 	public String getNameWithUID(int UID) {
 		return (String) user.getWithUid(UID).get(0).get("username");
 	}
+
 	public int login(String username, char[] password) {
 		HashMap<String, Object> check;
 		try {
