@@ -70,8 +70,5 @@ public class User implements UserAbstract {
 		newUser.put("password", password);
 		user.insert(newUser);;
 	}
-
-	public void logout(){
-		instance_ = null;
-	}
 }
+

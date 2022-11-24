@@ -10,7 +10,6 @@ public class BackendConsole {
     public List<CommentListItem> commentListItems;
 
     static private BackendConsole instance_  = new BackendConsole();
-
     static public BackendConsole instance() {
         return instance_;
     }
@@ -21,5 +20,4 @@ public class BackendConsole {
         comment = Comment.instance();
         commentListItems = new ArrayList<>();
     }
-
 }

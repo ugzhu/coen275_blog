@@ -24,9 +24,6 @@ public class Blog implements BlogAbstract{
 	private Blog() {
 	}
 
-	public void setBID(int BID){
-		this.blogID = BID;
-	}
 	public List<HashMap<String, Object>> getAll() {
 		return blog.getAll();
 	}
@@ -49,12 +46,6 @@ public class Blog implements BlogAbstract{
 
 	public String getUsername(int UID) {
 		return user.getWithUid(UID).get(0).get("username").toString();
-	}
-
-	public HashMap<String, Object> getBlogInfo(int BID) {
-		HashMap<String, Object> Info = blog.getWithBid(BID).get(0);
-		Info.put("authorName", (String) user.getWithUid((int) Info.get("UID")).get(0).get("username"));
-		return Info;
 	}
 
 	public void editBlog(String title, String content) {
@@ -83,14 +74,6 @@ public class Blog implements BlogAbstract{
 		return blogID;
 	}
 
-	public void addComment(String content, int UID) {
-		HashMap<String, Object> newComment = new HashMap<>();
-		newComment.put("content", content);
-		newComment.put("BID", blogID);
-		newComment.put("UID", UID);
-		comment.insert(newComment);
-	}
-
 	public void create(String title, String content, int UID) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("content", content);
@@ -99,3 +82,5 @@ public class Blog implements BlogAbstract{
 		blog.insert(map);
 	}
 }
+
+
