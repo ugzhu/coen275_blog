@@ -4,7 +4,7 @@ import java.util.HashMap;
 import model.Model;
 import model.CommentModel;
 
-public class CommentList{
+public class CommentListItem {
 
 	int commentID;
 	String content;
@@ -12,7 +12,7 @@ public class CommentList{
 	int blogID;
 	Model comment = CommentModel.instance();
 
-	public CommentList(int CID, String content, int BID, int UID) {
+	public CommentListItem(int CID, String content, int BID, int UID) {
 		commentID = CID;
 		this.content = content;
 		this.userID = UID;

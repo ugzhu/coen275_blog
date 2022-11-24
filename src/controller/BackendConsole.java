@@ -7,7 +7,7 @@ public class BackendConsole {
     public User user;
     public Blog blog;
     public Comment comment;
-    public List<CommentList> commentLists;
+    public List<CommentListItem> commentListItems;
 
     static private BackendConsole instance_  = new BackendConsole();
 
@@ -19,7 +19,7 @@ public class BackendConsole {
         user = User.instance();
         blog = Blog.instance();
         comment = Comment.instance();
-        commentLists = new ArrayList<>();
+        commentListItems = new ArrayList<>();
     }
 
 }
