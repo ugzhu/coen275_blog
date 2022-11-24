@@ -66,6 +66,8 @@ public class MainFrame extends JFrame{
     private JTextField registerUsernameField;
     private JPasswordField registerPasswordField;
     private JButton loginToRegisterBtn;
+    private JTextField searchField;
+    private JButton searchBtn;
     private CardLayout cLayout;
     private BackendConsole bc;
     private boolean isLoggedIn = false;
@@ -98,6 +100,14 @@ public class MainFrame extends JFrame{
         }else{
             logOut();
         }
+
+        searchBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String searchKey = searchField.getText();
+                loadIndex(searchKey);
+                searchField.setText("");
+            }
+        });
     }
 
     private void loadIndex(){
@@ -108,6 +118,20 @@ public class MainFrame extends JFrame{
         }
         cLayout.show(contentPane, "index");
     }
+
+    private void loadIndex(String searchKey){
+        myIndexTableModel.setRowCount(0);
+        List<HashMap<String, Object>> blogs = bc.blog.getAll();
+        for (HashMap<String, Object> blog : blogs){
+            if (blog.get("title").toString().contains(searchKey) ||
+                    blog.get("content").toString().contains(searchKey)) {
+                myIndexTableModel.addRow(new Object[]{blog.get("title"), blog.get("content"), blog.get("BID")});
+            }
+        }
+        cLayout.show(contentPane, "index");
+    }
+
+
 
     private void loadMyBlog(){
         myBlogTableModel.setRowCount(0);
