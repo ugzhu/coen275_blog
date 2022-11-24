@@ -23,7 +23,6 @@ public class Blog implements BlogAbstract{
 	}
 
 	private Blog() {
-
 	}
 
 	public void setBID(int BID){
@@ -47,6 +46,10 @@ public class Blog implements BlogAbstract{
 
 	public int getUID(){
 		return authorID;
+	}
+
+	public String getUsername(int UID) {
+		return user.getWithUid(UID).get(0).get("username").toString();
 	}
 
 	public HashMap<String, Object> getBlogInfo(int BID) {
@@ -73,6 +76,7 @@ public class Blog implements BlogAbstract{
 		this.authorID = (int) info.get("UID");
 		this.content = (String) info.get("content");
 		this.title = (String) info.get("title");
+		commentsList = null;
 		commentsList = comment.getWithBid(blogID);
 	}
 
@@ -86,5 +90,13 @@ public class Blog implements BlogAbstract{
 		newComment.put("BID", blogID);
 		newComment.put("UID", UID);
 		comment.insert(newComment);
+	}
+
+	public void create(String title, String content, int UID) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("content", content);
+		map.put("title", title);
+		map.put("UID", UID);
+		blog.insert(map);
 	}
 }

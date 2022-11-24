@@ -66,10 +66,10 @@ public class User implements UserAbstract {
 		}
 	}
 
-	public void register(String username, char[] password) {
+	public void register(String username, String password) {
 		HashMap<String, Object> newUser = new HashMap<>();
 		newUser.put("username", username);
-		newUser.put("password", password.toString());
+		newUser.put("password", password);
 		user.insert(newUser);;
 	}
 

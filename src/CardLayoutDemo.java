@@ -1,5 +1,3 @@
-package ui;
-
 // Java program to show Example of CardLayout.
 // in java. Importing different Package.
 import java.awt.*;

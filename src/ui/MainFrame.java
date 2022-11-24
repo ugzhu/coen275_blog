@@ -38,6 +38,35 @@ public class MainFrame extends JFrame{
     private JButton blogDetailUpdateBtn;
     private JButton blogDetailToIndexBtn;
     private JButton blogDetailToLogOutBtn;
+    private JPanel newBlogPane;
+    private JTextField newBlogTitleField;
+    private JTextArea newBlogContentField;
+    private JButton newBlogToIndexBtn;
+    private JButton createBlogBtn;
+    private JButton indexToNewBlogBtn;
+    private JPanel newCommentPane;
+    private JTextArea commentField;
+    private JButton newCommentToBlogDetailBtn;
+    private JButton createCommentBtn;
+    private JButton leaveACommentButton;
+    private JPanel editBlogPane;
+    private JTextArea editBlogContentField;
+    private JButton deleteBlogBtn;
+    private JButton updateBlogBtn;
+    private JButton editBlogToBlogDetailBtn;
+    private JTextField editBlogTitleField;
+    private JPanel editCommentPane;
+    private JTextArea commentDetailField;
+    private JButton deleteCommentBtn;
+    private JButton editCommentToBlogDetailBtn;
+    private JButton updateCommentBtn;
+    private JLabel commentDetailCID;
+    private JButton registerBtn;
+    private JButton registerToLoginBtn;
+    private JPanel registerPane;
+    private JTextField registerUsernameField;
+    private JPasswordField registerPasswordField;
+    private JButton loginToRegisterBtn;
     private JLabel login;
     private CardLayout cLayout;
     private BackendConsole bc;
@@ -66,7 +95,7 @@ public class MainFrame extends JFrame{
         myBlogDetailTableModel.addColumn("");
         myBlogDetailTableModel.addColumn("CID");
         blogDetailTable.setModel(myBlogDetailTableModel);
-        blogDetailTable.removeColumn(blogDetailTable.getColumnModel().getColumn(2));
+        blogDetailTable.getColumnModel().removeColumn(blogDetailTable.getColumnModel().getColumn(2));
 
 
         setTitle("Team 5 Blog Application");
@@ -78,6 +107,11 @@ public class MainFrame extends JFrame{
         contentPane.add(indexPane, "index");
         contentPane.add(myBlogPane, "myBlog");
         contentPane.add(blogDetailPane, "blogDetail");
+        contentPane.add(newBlogPane, "newBlog");
+        contentPane.add(newCommentPane, "newComment");
+        contentPane.add(editBlogPane, "editBlog");
+        contentPane.add(editCommentPane, "editComment");
+        contentPane.add(registerPane, "register");
         bc = BackendConsole.instance();
 
         if (isLoggedIn){
@@ -174,6 +208,136 @@ public class MainFrame extends JFrame{
             }
         });
 
+        indexToNewBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadNewBlog();
+            }
+        });
+
+
+        newBlogToIndexBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadIndex();
+            }
+        });
+
+        createBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String title = newBlogTitleField.getText();
+                String content = newBlogContentField.getText();
+                int UID = bc.user.getUID();
+                bc.blog.create(title, content, UID);
+                newBlogTitleField.setText("");
+                newBlogContentField.setText("");
+                loadIndex();
+            }
+        });
+        leaveACommentButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadNewComment();
+            }
+        });
+        newCommentToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        createCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String comment = commentField.getText();
+                int BID = bc.blog.getBID();
+                int UID = bc.user.getUID();
+                bc.comment.createComment(comment, BID, UID);
+                commentField.setText("");
+                loadBlogDetail(BID);
+            }
+        });
+        blogDetailUpdateBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadEditBlog();
+            }
+        });
+        editBlogToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+        updateBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String title = editBlogTitleField.getText();
+                String content = editBlogContentField.getText();
+                bc.blog.editBlog(title, content);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+        deleteBlogBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                bc.blog.deleteBlog(bc.blog.getBID());
+                loadIndex();
+            }
+        });
+
+        editCommentToBlogDetailBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+
+        blogDetailTable.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                int col = table.columnAtPoint(point);
+                String clicked = blogDetailTable.getModel().getValueAt(row, col).toString();
+
+                if (clicked.equals("Click to update/delete")) {
+                    int CID = (int) blogDetailTable.getModel().getValueAt(row, 2);
+                    String comment = blogDetailTable.getModel().getValueAt(row, 0).toString();
+                    loadEditComment(CID, comment);
+                }
+            }
+        });
+
+        deleteCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int CID = Integer.parseInt(commentDetailCID.getText());
+                bc.comment.deleteComment(CID);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+
+        updateCommentBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int CID = Integer.parseInt(commentDetailCID.getText());
+                String comment = commentDetailField.getText();
+                bc.comment.updateComment(CID, comment);
+                loadBlogDetail(bc.blog.getBID());
+            }
+        });
+        loginToRegisterBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadRegister();
+            }
+        });
+        registerToLoginBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                logOut();
+            }
+        });
+
+        registerBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String usr = registerUsernameField.getText();
+                String pwd = new String(registerPasswordField.getPassword());
+                bc.user.register(usr, pwd);
+                registerPasswordField.setText("");
+                registerUsernameField.setText("");
+                logOut();
+             }
+        });
     }
 
     private void loadIndex(){
@@ -184,6 +348,7 @@ public class MainFrame extends JFrame{
         }
         cLayout.show(contentPane, "index");
     }
+
     private void loadMyBlog(){
         myBlogTableModel.setRowCount(0);
         List<HashMap<String, Object>> blogs = bc.blog.getAll();
@@ -204,15 +369,15 @@ public class MainFrame extends JFrame{
         }
         blogDetailContentLabel.setText(bc.blog.getContent());
         blogDetailTitleLabel.setText(bc.blog.getTitle());
-        blogDetailUIDLabel.setText(""+bc.blog.getUID());
+        blogDetailUIDLabel.setText(""+bc.blog.getUsername(bc.blog.getUID()));
 
         myBlogDetailTableModel.setRowCount(0);
         List<HashMap<String, Object>> comments = bc.blog.getCommentList();
         for (HashMap<String, Object> comment :  comments){
             if ((int) comment.get("UID") == bc.user.getUID()){
-                myBlogDetailTableModel.addRow(new Object[]{comment.get("content"), "Update your comment", comment.get("content")});
+                myBlogDetailTableModel.addRow(new Object[]{comment.get("content"), "Click to update/delete", comment.get("CID")});
             }else{
-                myBlogDetailTableModel.addRow(new Object[]{comment.get("content"), "", comment.get("content")});
+                myBlogDetailTableModel.addRow(new Object[]{comment.get("content"), "", comment.get("CID")});
             }
         }
 
@@ -225,4 +390,28 @@ public class MainFrame extends JFrame{
         cLayout.show(contentPane, "login");
     }
 
+    private void loadNewBlog(){
+        cLayout.show(contentPane, "newBlog");
+    }
+
+    private void loadNewComment(){
+        cLayout.show(contentPane, "newComment");
+    }
+
+    private void loadEditBlog() {
+        editBlogTitleField.setText(bc.blog.getTitle());
+        editBlogContentField.setText(bc.blog.getContent());
+        cLayout.show(contentPane, "editBlog");
+    }
+
+    private void loadEditComment(int CID, String comment) {
+        commentDetailField.setText(comment);
+        commentDetailCID.setText(String.valueOf(CID));
+        commentDetailCID.setVisible(false);
+        cLayout.show(contentPane, "editComment");
+    }
+
+    private void loadRegister(){
+        cLayout.show(contentPane, "register");
+    }
 }
