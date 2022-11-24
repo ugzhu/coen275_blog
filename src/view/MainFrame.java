@@ -100,14 +100,6 @@ public class MainFrame extends JFrame{
         }else{
             logOut();
         }
-
-        searchBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String searchKey = searchField.getText();
-                loadIndex(searchKey);
-                searchField.setText("");
-            }
-        });
     }
 
     private void loadIndex(){
@@ -130,8 +122,6 @@ public class MainFrame extends JFrame{
         }
         cLayout.show(contentPane, "index");
     }
-
-
 
     private void loadMyBlog(){
         myBlogTableModel.setRowCount(0);
@@ -419,6 +409,14 @@ public class MainFrame extends JFrame{
                 registerPasswordField.setText("");
                 registerUsernameField.setText("");
                 logOut();
+            }
+        });
+
+        searchBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String searchKey = searchField.getText();
+                loadIndex(searchKey);
+                searchField.setText("");
             }
         });
     }
