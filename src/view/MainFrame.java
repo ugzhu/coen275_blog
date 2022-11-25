@@ -71,6 +71,12 @@ public class MainFrame extends JFrame{
     private JLabel loginIcon;
     private JLabel myBlogIcon;
     private JLabel createIcon;
+    private JLabel commentIcon;
+    private JLabel editBlogIcon;
+    private JLabel editCommentIcon;
+    private JLabel blogDetailIcon;
+    private JLabel registerIcon;
+    private JLabel indexIcon;
     private CardLayout cLayout;
     private BackendConsole bc;
     private boolean isLoggedIn = false;
