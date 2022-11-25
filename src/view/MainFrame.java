@@ -68,6 +68,9 @@ public class MainFrame extends JFrame{
     private JButton loginToRegisterBtn;
     private JTextField searchField;
     private JButton searchBtn;
+    private JLabel loginIcon;
+    private JLabel myBlogIcon;
+    private JLabel createIcon;
     private CardLayout cLayout;
     private BackendConsole bc;
     private boolean isLoggedIn = false;
@@ -444,4 +447,5 @@ public class MainFrame extends JFrame{
         blogDetailTable.setModel(myBlogDetailTableModel);
         blogDetailTable.getColumnModel().removeColumn(blogDetailTable.getColumnModel().getColumn(2));
     }
+
 }

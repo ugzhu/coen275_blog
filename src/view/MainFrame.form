@@ -2,12 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.MainFrame">
   <grid id="27dc6" binding="contentPane" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="616" height="400"/>
+      <xy x="20" y="20" width="943" height="686"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="58584" binding="loginPane" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="58584" binding="loginPane" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card1"/>
@@ -17,7 +17,7 @@
         <children>
           <component id="7affe" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -25,15 +25,16 @@
           </component>
           <component id="20d31" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Password:"/>
             </properties>
           </component>
           <component id="731cb" class="javax.swing.JTextField" binding="usernameField">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -41,49 +42,93 @@
           </component>
           <component id="8956a" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Username:"/>
             </properties>
           </component>
           <component id="b9446" class="javax.swing.JButton" binding="loginBtn">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="90" height="40"/>
+                <preferred-size width="90" height="40"/>
+                <maximum-size width="90" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Log In"/>
             </properties>
           </component>
           <hspacer id="9946e">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
           <hspacer id="2fd59">
             <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
           <component id="66d25" class="javax.swing.JLabel" binding="loginPrompt">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Plase Log-in to Proceed"/>
+              <font name="Monospaced" size="12" style="2"/>
+              <foreground color="-9474455"/>
+              <text value="Plase log in to proceed"/>
             </properties>
           </component>
-          <component id="535bd" class="javax.swing.JButton" binding="loginToRegisterBtn">
+          <component id="886c5" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" size="18" style="1"/>
+              <text value="Login"/>
+            </properties>
+          </component>
+          <component id="8960e" class="javax.swing.JLabel" binding="loginIcon">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="60" height="60"/>
+                <maximum-size width="60" height="60"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="images/blogicon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <vspacer id="4332d">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="77975">
+            <constraints>
+              <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="535bd" class="javax.swing.JButton" binding="loginToRegisterBtn">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="90" height="40"/>
+                <preferred-size width="90" height="40"/>
+                <maximum-size width="90" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
               <text value="Register"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="6ecc9" binding="myBlogPane" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="6ecc9" binding="myBlogPane" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card3"/>
@@ -91,33 +136,9 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a5229" class="javax.swing.JLabel" binding="myBlogLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="My Blogs"/>
-            </properties>
-          </component>
-          <component id="b66d6" class="javax.swing.JButton" binding="myBlogLogOutBtn">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Log Out"/>
-            </properties>
-          </component>
-          <component id="cd874" class="javax.swing.JButton" binding="myToIndexBtn">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="View All"/>
-            </properties>
-          </component>
           <scrollpane id="3a483" binding="myBlogScrollPane">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -128,9 +149,64 @@
               </component>
             </children>
           </scrollpane>
+          <component id="cd874" class="javax.swing.JButton" binding="myToIndexBtn">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="40"/>
+                <preferred-size width="150" height="40"/>
+                <maximum-size width="150" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <font name="Monospaced"/>
+              <text value="View All"/>
+            </properties>
+          </component>
+          <component id="b66d6" class="javax.swing.JButton" binding="myBlogLogOutBtn">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="100" height="40"/>
+                <preferred-size width="100" height="40"/>
+                <maximum-size width="100" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
+              <text value="Log Out"/>
+            </properties>
+          </component>
+          <component id="1ea51" class="javax.swing.JLabel" binding="myBlogIcon">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/blogicon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="a5229" class="javax.swing.JLabel" binding="myBlogLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" size="18" style="1"/>
+              <text value="My Blogs"/>
+            </properties>
+          </component>
+          <hspacer id="c39f9">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="9e7fe">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
-      <grid id="321b9" binding="indexPane" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="321b9" binding="indexPane" layout-manager="GridLayoutManager" row-count="5" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card2"/>
@@ -138,19 +214,13 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="21743" class="javax.swing.JLabel" binding="indexLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="All Blogs"/>
-            </properties>
-          </component>
           <scrollpane id="6ec4b" binding="indexScrollPane">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Monospaced"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="e4c8a" class="javax.swing.JTable" binding="indexTable">
@@ -159,33 +229,9 @@
               </component>
             </children>
           </scrollpane>
-          <component id="daacd" class="javax.swing.JButton" binding="indexLogOutBtn">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Log Out"/>
-            </properties>
-          </component>
-          <component id="5fe58" class="javax.swing.JButton" binding="indexToMyBtn">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="View My Blogs"/>
-            </properties>
-          </component>
-          <component id="11e7d" class="javax.swing.JButton" binding="indexToNewBlogBtn">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Create A New Blog"/>
-            </properties>
-          </component>
           <component id="4c79d" class="javax.swing.JTextField" binding="searchField">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -193,17 +239,103 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="8a2ef" class="javax.swing.JButton" binding="searchBtn">
+          <component id="5fe58" class="javax.swing.JButton" binding="indexToMyBtn">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="40"/>
+                <preferred-size width="150" height="40"/>
+                <maximum-size width="150" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
+              <text value="View My Blogs"/>
+            </properties>
+          </component>
+          <hspacer id="e0d31">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="3b912">
+            <constraints>
+              <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="daacd" class="javax.swing.JButton" binding="indexLogOutBtn">
+            <constraints>
+              <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="100" height="40"/>
+                <maximum-size width="100" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
+              <text value="Log Out"/>
+            </properties>
+          </component>
+          <component id="11e7d" class="javax.swing.JButton" binding="indexToNewBlogBtn">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="40"/>
+                <preferred-size width="150" height="40"/>
+                <maximum-size width="150" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
+              <text value="Create A New Blog"/>
+            </properties>
+          </component>
+          <hspacer id="81311">
+            <constraints>
+              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="8a2ef" class="javax.swing.JButton" binding="searchBtn">
+            <constraints>
+              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="100" height="40"/>
+                <preferred-size width="100" height="40"/>
+                <maximum-size width="100" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
               <text value="Search"/>
+            </properties>
+          </component>
+          <component id="b2366" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/blogicon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <hspacer id="29190">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="bf882">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="21743" class="javax.swing.JLabel" binding="indexLabel">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" size="18" style="1"/>
+              <text value="All Blogs"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="192c8" binding="blogDetailPane" layout-manager="GridLayoutManager" row-count="7" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="192c8" binding="blogDetailPane" layout-manager="GridLayoutManager" row-count="8" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card4"/>
@@ -211,19 +343,12 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="117d" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Blog Details"/>
-            </properties>
-          </component>
           <component id="dd9a8" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Title"/>
             </properties>
           </component>
@@ -232,6 +357,7 @@
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Content"/>
             </properties>
           </component>
@@ -239,7 +365,9 @@
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Monospaced"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="67477" class="javax.swing.JTable" binding="blogDetailTable">
@@ -274,6 +402,7 @@
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Author"/>
             </properties>
           </component>
@@ -287,20 +416,16 @@
           </component>
           <hspacer id="21972">
             <constraints>
-              <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="74d25" class="javax.swing.JButton" binding="blogDetailToLogOutBtn">
-            <constraints>
-              <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Log Out"/>
-            </properties>
-          </component>
           <component id="d5772" class="javax.swing.JButton" binding="blogDetailToIndexBtn">
             <constraints>
-              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="40"/>
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
               <text value="View All Blogs"/>
@@ -308,7 +433,11 @@
           </component>
           <component id="e0a7f" class="javax.swing.JButton" binding="leaveACommentButton" default-binding="true">
             <constraints>
-              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="30"/>
+                <preferred-size width="150" height="30"/>
+                <maximum-size width="150" height="30"/>
+              </grid>
             </constraints>
             <properties>
               <text value="Leave a Comment"/>
@@ -316,15 +445,40 @@
           </component>
           <component id="d0202" class="javax.swing.JButton" binding="blogDetailUpdateBtn">
             <constraints>
-              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="30"/>
+                <preferred-size width="150" height="30"/>
+                <maximum-size width="150" height="30"/>
+              </grid>
             </constraints>
             <properties>
               <text value="Update"/>
             </properties>
           </component>
+          <component id="117d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" size="18" style="1"/>
+              <text value="Blog Details"/>
+            </properties>
+          </component>
+          <component id="74d25" class="javax.swing.JButton" binding="blogDetailToLogOutBtn">
+            <constraints>
+              <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="100" height="40"/>
+                <preferred-size width="100" height="40"/>
+                <maximum-size width="100" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Log Out"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="b6f8f" binding="newBlogPane" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="b6f8f" binding="newBlogPane" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card5"/>
@@ -332,16 +486,12 @@
         <properties/>
         <border type="none"/>
         <children>
-          <vspacer id="21999">
-            <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
           <component id="e22d3" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Title"/>
             </properties>
           </component>
@@ -351,13 +501,16 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Monospaced"/>
+            </properties>
           </component>
           <component id="9c80" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Content"/>
             </properties>
           </component>
@@ -367,13 +520,16 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Monospaced"/>
+            </properties>
           </component>
           <component id="38568" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" size="18" style="1"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Create a New Blog Post"/>
@@ -381,7 +537,10 @@
           </component>
           <component id="a1985" class="javax.swing.JButton" binding="newBlogToIndexBtn">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
               <text value="Discard And Back"/>
@@ -389,15 +548,27 @@
           </component>
           <component id="d3cdd" class="javax.swing.JButton" binding="createBlogBtn">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
               <text value="Create Blog Post"/>
             </properties>
           </component>
+          <component id="77424" class="javax.swing.JLabel" binding="createIcon">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/newicon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="400c1" binding="newCommentPane" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="400c1" binding="newCommentPane" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card6"/>
@@ -407,15 +578,16 @@
         <children>
           <component id="3372e" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Comment"/>
             </properties>
           </component>
           <component id="d52c6" class="javax.swing.JTextArea" binding="commentField">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
@@ -423,26 +595,57 @@
           </component>
           <component id="d59da" class="javax.swing.JButton" binding="newCommentToBlogDetailBtn">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="40"/>
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Discard and Back"/>
             </properties>
           </component>
           <component id="bb9bd" class="javax.swing.JButton" binding="createCommentBtn">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="40"/>
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Create Comment"/>
             </properties>
           </component>
           <component id="a0d7f" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" size="18" style="1"/>
               <text value="Create Comment"/>
+            </properties>
+          </component>
+          <vspacer id="6e6ae">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="828d4">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="45637" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <icon value="images/newicon.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -455,14 +658,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="dce94" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Title"/>
-            </properties>
-          </component>
           <component id="42f6" class="javax.swing.JTextField" binding="editBlogTitleField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -473,9 +668,10 @@
           </component>
           <component id="b0f27" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Content"/>
             </properties>
           </component>
@@ -492,6 +688,7 @@
               <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" size="18" style="1"/>
               <text value="Edit your blog"/>
             </properties>
           </component>
@@ -519,9 +716,18 @@
               <text value="Discard and Back"/>
             </properties>
           </component>
+          <component id="dce94" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" style="1"/>
+              <text value="Title"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="577f8" binding="editCommentPane" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="577f8" binding="editCommentPane" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card8"/>
@@ -531,15 +737,16 @@
         <children>
           <component id="4009" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
               <text value="Comment"/>
             </properties>
           </component>
           <component id="943d6" class="javax.swing.JTextArea" binding="commentDetailField">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
@@ -547,47 +754,71 @@
           </component>
           <component id="31a59" class="javax.swing.JButton" binding="deleteCommentBtn">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Delete Comment"/>
             </properties>
           </component>
           <component id="256ab" class="javax.swing.JButton" binding="editCommentToBlogDetailBtn">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Discard and Back"/>
             </properties>
           </component>
           <component id="ad8d7" class="javax.swing.JButton" binding="updateCommentBtn">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="40"/>
+                <preferred-size width="200" height="40"/>
+                <maximum-size width="200" height="40"/>
+              </grid>
             </constraints>
             <properties>
+              <font name="Monospaced"/>
               <text value="Update Comment"/>
             </properties>
           </component>
           <component id="79767" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" size="18" style="1"/>
               <text value="Edit your comment"/>
             </properties>
           </component>
           <component id="f640d" class="javax.swing.JLabel" binding="commentDetailCID">
             <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Hidden CID Field"/>
             </properties>
           </component>
+          <vspacer id="abb81">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="8b362">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
-      <grid id="68619" binding="registerPane" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="68619" binding="registerPane" layout-manager="GridLayoutManager" row-count="8" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <card name="Card9"/>
@@ -595,59 +826,106 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="7dfd8" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="New User Registration"/>
-            </properties>
-          </component>
-          <component id="8f399" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Username"/>
-            </properties>
-          </component>
           <component id="7d27e" class="javax.swing.JTextField" binding="registerUsernameField">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties/>
-          </component>
-          <component id="134ce" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Password"/>
-            </properties>
           </component>
           <component id="c884e" class="javax.swing.JPasswordField" binding="registerPasswordField">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties/>
           </component>
-          <component id="bcdb" class="javax.swing.JButton" binding="registerBtn">
+          <hspacer id="7568f">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="b511e">
+            <constraints>
+              <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="8f399" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monospaced" style="1"/>
+              <text value="Username"/>
+            </properties>
+          </component>
+          <component id="134ce" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" style="1"/>
+              <text value="Password"/>
+            </properties>
+          </component>
+          <component id="7dfd8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" size="18" style="1"/>
+              <text value="New User"/>
+            </properties>
+          </component>
+          <component id="1c47d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced" style="2"/>
+              <foreground color="-9474455"/>
+              <text value="Register today and start blogging!"/>
+            </properties>
+          </component>
+          <component id="f992a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="60" height="60"/>
+                <maximum-size width="60" height="60"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="images/registericon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <vspacer id="5205a">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="ad861">
+            <constraints>
+              <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="bcdb" class="javax.swing.JButton" binding="registerBtn">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Monospaced"/>
               <text value="Register"/>
             </properties>
           </component>
           <component id="e8b17" class="javax.swing.JButton" binding="registerToLoginBtn">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Monaco" size="12"/>
               <text value="Have an account? Go to log in!"/>
             </properties>
           </component>
